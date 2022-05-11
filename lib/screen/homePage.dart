@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   late ValueNotifier<int> _selectedIndex = ValueNotifier(0);
   DateTime currentFromDate = DateTime.now();
   DateTime currentToDate = DateTime.now();
-
+  String? reportType;
   bool qtyvisible = false;
   String? formattedDate;
   String? crntFromDateFormat;
@@ -35,14 +35,28 @@ class _HomePageState extends State<HomePage> {
   List newList = [];
   String? fromDate;
   String? toDate;
+  // int selectedIndex = 0;
   DateTime dateTime = DateTime.now(); //
   ////////////////////////////////////////////
-  _onSelectItem(int index, String reportType) {
+  _onSelectItem(int index, String reportType1) {
     _selectedIndex.value = index;
+    setState(() {
+      reportType = reportType1;
+    });
     Navigator.of(context).pop(); // close the drawer
   }
 
 ///////////////////////////////////////////////
+// _getDrawerItemWidget(int pos) {
+//     print("pos---${pos}");
+//     switch (pos) {
+//       case 0:
+//         return new MainDashboard();
+//       case 3:
+//         return new OrderForm();
+//     }
+//   }
+//////////////////////////////////
   Future _selectFromDate(BuildContext context, Size size) async {
     final DateTime? pickedDate = await showDatePicker(
         context: context,
@@ -97,11 +111,17 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // Provider.of<Controller>(context, listen: false).getCategoryReportList(rg_id)
     _controller.clear();
-    DateTime currentD=DateTime(currentFromDate.year,currentFromDate.month-1,currentFromDate.day);
+    DateTime currentD = DateTime(
+        currentFromDate.year, currentFromDate.month - 1, currentFromDate.day);
     crntFromDateFormat = DateFormat('dd-MM-yyyy').format(currentD);
     crntToDateFormat = DateFormat('dd-MM-yyyy').format(currentToDate);
 
     super.initState();
+    Provider.of<Controller>(context, listen: false).getCategoryReportList("1");
+    reportType = Provider.of<Controller>(context, listen: false)
+        .reportCategoryList[0]
+        .values
+        .elementAt(1);
   }
 
 ////////////////////////////////////////////////////
@@ -110,8 +130,6 @@ class _HomePageState extends State<HomePage> {
       visible = !visible;
     });
   }
-
-
 
 //////////////////////////////////////////////////
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -176,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                 print("clicked");
               },
               icon: Icon(Icons.menu)),
-          title: appBarTitle,
+          title: Text(reportType.toString()),
         ),
 
         ///////////////////////////////////////////////////////////////////
@@ -281,8 +299,9 @@ class _HomePageState extends State<HomePage> {
                                                       _selectFromDate(
                                                           context, size);
                                                     },
-                                                    child: Text(crntFromDateFormat
-                                                        .toString()))
+                                                    child: Text(
+                                                        crntFromDateFormat
+                                                            .toString()))
                                                 : InkWell(
                                                     onTap: (() {
                                                       _selectFromDate(
@@ -307,8 +326,9 @@ class _HomePageState extends State<HomePage> {
                                                       _selectFromDate(
                                                           context, size);
                                                     }),
-                                                    child: Text(crntFromDateFormat
-                                                        .toString()))
+                                                    child: Text(
+                                                        crntFromDateFormat
+                                                            .toString()))
                                                 : InkWell(
                                                     onTap: () {
                                                       _selectFromDate(
