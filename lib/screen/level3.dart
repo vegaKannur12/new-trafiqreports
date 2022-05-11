@@ -734,7 +734,7 @@ class _LevelThreeState extends State<LevelThree> {
                   if (value.isSearch && value.l3newList.length > 0) {
                     return Container(
                       // color: P_Settings.datatableColor,
-                      height: size.height * 0.69,
+                      height: size.height * 0.71,
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: value.l3newList.length,

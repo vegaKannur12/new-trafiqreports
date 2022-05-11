@@ -611,7 +611,7 @@ class _LevelTwoState extends State<LevelTwo> {
                   if (value.isSearch && value.l2newList.length > 0) {
                     return Container(
                       // color: P_Settings.datatableColor,
-                      height: size.height * 0.69,
+                      height: size.height * 0.71,
                       child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: value.l2newList.length,

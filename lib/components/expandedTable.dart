@@ -71,19 +71,18 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: FittedBox(
-        child: DataTable(
-          columnSpacing: 0,
-          headingRowHeight: 35,
-          dataRowHeight: 35,
-          decoration: BoxDecoration(color: P_Settings.datatableColor),
-          border: TableBorder.all(
-            color: P_Settings.datatableColor,
-          ),
-          columns: getColumns(tableColumn),
-          rows: getRowss(mapTabledata),
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        columnSpacing: 7,
+        headingRowHeight: 35,
+        dataRowHeight: 35,
+        horizontalMargin: 5,
+        decoration: BoxDecoration(color: P_Settings.datatableColor),
+        border: TableBorder.all(
+          color: P_Settings.datatableColor,
         ),
+        columns: getColumns(tableColumn),
+        rows: getRowss(mapTabledata),
       ),
     );
   }
