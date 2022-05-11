@@ -230,7 +230,7 @@ class _LevelOneState extends State<LevelOne> {
                                                               "level1",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         },
                                                         child: Text(Provider.of<
@@ -246,7 +246,7 @@ class _LevelOneState extends State<LevelOne> {
                                                               "level1",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         }),
                                                         child: Text(selectD
@@ -276,11 +276,10 @@ class _LevelOneState extends State<LevelOne> {
                                                               "level1",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         }),
-                                                        child: Text(
-                                                          Provider.of<
+                                                        child: Text(Provider.of<
                                                                     Controller>(
                                                                 context,
                                                                 listen: false)
@@ -293,7 +292,7 @@ class _LevelOneState extends State<LevelOne> {
                                                               "level1",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         },
                                                         child: Text(selectD
@@ -309,8 +308,7 @@ class _LevelOneState extends State<LevelOne> {
                                                     context,
                                                     "level1",
                                                     widget.filter_id,
-                                                   widget
-                                                              .old_filter_where_ids,
+                                                    widget.old_filter_where_ids,
                                                     "to date");
                                               },
                                               icon: const Icon(
@@ -323,7 +321,7 @@ class _LevelOneState extends State<LevelOne> {
                                                         "level1",
                                                         widget.filter_id,
                                                         widget
-                                                              .old_filter_where_ids,
+                                                            .old_filter_where_ids,
                                                         "to date");
                                                   },
                                                   child: Text(
@@ -339,7 +337,7 @@ class _LevelOneState extends State<LevelOne> {
                                                         "level1",
                                                         widget.filter_id,
                                                         widget
-                                                              .old_filter_where_ids,
+                                                            .old_filter_where_ids,
                                                         "to date");
                                                   },
                                                   child: Text(selectD.toDate
@@ -462,7 +460,12 @@ class _LevelOneState extends State<LevelOne> {
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
-
+                                                              Provider.of<Controller>(
+                                                                      context,
+                                                                      listen:
+                                                                          false)
+                                                                  .setSpecialField(
+                                                                      specialField!);
                                                               Provider.of<Controller>(
                                                                       context,
                                                                       listen:
@@ -1004,7 +1007,8 @@ class _LevelOneState extends State<LevelOne> {
                                                       child:
                                                           const CircularProgressIndicator())
                                                   : ExpandedDatatable(
-                                                      dedoded:value.expndmapTabledata,
+                                                      dedoded: value
+                                                          .expndmapTabledata,
                                                       // value.l1listForTable.length!=0 && value.l1listForTable !=null||value.l1listForTable.isNotEmpty
                                                       //     ? value.l1listForTable[
                                                       //         index]

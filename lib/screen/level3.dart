@@ -639,7 +639,12 @@ class _LevelThreeState extends State<LevelThree> {
                                                                   .setDate(
                                                                       fromDate!,
                                                                       toDate!);
-
+                                                              Provider.of<Controller>(
+                                                                      context,
+                                                                      listen:
+                                                                          false)
+                                                                  .setSpecialField(
+                                                                      specialField!);
                                                               Provider.of<Controller>(
                                                                       context,
                                                                       listen:

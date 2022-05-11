@@ -61,7 +61,7 @@ class SelectDate {
     Provider.of<Controller>(context, listen: false).setDate(fromDate!, toDate!);
 
     specialField = Provider.of<Controller>(context, listen: false).special;
-
+    print("special----${specialField}");
     Provider.of<Controller>(context, listen: false).getSubCategoryReportList(
         specialField!,
         filter_id,
