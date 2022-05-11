@@ -77,7 +77,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
         headingRowHeight: 35,
         dataRowHeight: 35,
         horizontalMargin: 5,
-        decoration: BoxDecoration(color: P_Settings.datatableColor),
+        decoration: BoxDecoration(color: P_Settings.l1totColor),
         border: TableBorder.all(
           color: P_Settings.datatableColor,
         ),
