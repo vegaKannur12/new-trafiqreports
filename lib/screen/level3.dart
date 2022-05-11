@@ -45,6 +45,7 @@ class _LevelThreeState extends State<LevelThree> {
   bool qtyvisible = false;
   String? formattedDate;
   String? fromDate;
+  String selected="";
   String? toDate;
   String? crntDateFormat;
   Icon actionIcon = Icon(Icons.search);
@@ -260,6 +261,8 @@ class _LevelThreeState extends State<LevelThree> {
     // visible = List.generate(length, (index) => true);
     // print("isExpanded---$isExpanded");
     // print("visible---$visible");
+    selected = Provider.of<Controller>(context, listen: false).special!;
+
   }
 
   @override
@@ -602,7 +605,9 @@ class _LevelThreeState extends State<LevelThree> {
                                                             style:
                                                                 ElevatedButton
                                                                     .styleFrom(
-                                                              primary: P_Settings
+                                                                 primary:selected==value
+                                                        .specialelements[index]["value"]? P_Settings
+                                                                  .l3appbarColor:P_Settings
                                                                   .l3datatablecolor,
                                                               shadowColor:
                                                                   P_Settings
@@ -614,6 +619,10 @@ class _LevelThreeState extends State<LevelThree> {
                                                             ),
                                                             onPressed: () {
                                                               specialField =
+                                                                  value.specialelements[
+                                                                          index]
+                                                                      ["value"];
+                                                                      selected =
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];

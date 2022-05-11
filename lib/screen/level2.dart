@@ -51,6 +51,7 @@ class _LevelTwoState extends State<LevelTwo> {
   String? toDate;
   String? crntDateFormat;
   Icon actionIcon = Icon(Icons.search);
+  String selected = "";
   // List<bool> visible = [];
   // List<bool> isExpanded = [];
   late ValueNotifier<int> _selectedIndex = ValueNotifier(0);
@@ -170,6 +171,7 @@ class _LevelTwoState extends State<LevelTwo> {
     print("tile from level1---${widget.level1tileName}");
     titleName = widget.hometileName + ' ' + '/' + ' ' + widget.level1tileName;
     print("tileName---${titleName}");
+    selected = Provider.of<Controller>(context, listen: false).special!;
   }
 
   @override
@@ -216,7 +218,7 @@ class _LevelTwoState extends State<LevelTwo> {
               }),
         ),
         ///////////////////////////////////////////////////////////////////
-        
+
         body: InteractiveViewer(
           child: Column(
             children: [
@@ -297,7 +299,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                               "level2",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         },
                                                         child: Text(Provider.of<
@@ -313,7 +315,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                               "level2",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         }),
                                                         child: Text(selectD
@@ -343,7 +345,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                               "level2",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         }),
                                                         child: Text(Provider.of<
@@ -359,7 +361,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                               "level2",
                                                               widget.filter_id,
                                                               widget
-                                                              .old_filter_where_ids,
+                                                                  .old_filter_where_ids,
                                                               "from date");
                                                         },
                                                         child: Text(selectD
@@ -375,8 +377,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                     context,
                                                     "level2",
                                                     widget.filter_id,
-                                                    widget
-                                                              .old_filter_where_ids,
+                                                    widget.old_filter_where_ids,
                                                     "to date");
                                               },
                                               icon: Icon(Icons.calendar_month)),
@@ -387,8 +388,8 @@ class _LevelTwoState extends State<LevelTwo> {
                                                         context,
                                                         "level2",
                                                         widget.filter_id,
-                                                       widget
-                                                              .old_filter_where_ids,
+                                                        widget
+                                                            .old_filter_where_ids,
                                                         "to date");
                                                   },
                                                   child: Text(
@@ -404,7 +405,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                         "level2",
                                                         widget.filter_id,
                                                         widget
-                                                              .old_filter_where_ids,
+                                                            .old_filter_where_ids,
                                                         "to date");
                                                   },
                                                   child: Text(selectD.toDate
@@ -481,8 +482,16 @@ class _LevelTwoState extends State<LevelTwo> {
                                                                     .styleFrom(
                                                               // shape: StadiumBorder(),
 
-                                                              primary: P_Settings
-                                                                  .l2datatablecolor,
+                                                              primary: selected ==
+                                                                      value.specialelements[
+                                                                              index]
+                                                                          [
+                                                                          "value"]
+                                                                  ? P_Settings
+                                                                      .l2appbarColor
+                                                                  : P_Settings
+                                                                      .l2datatablecolor,
+
                                                               shadowColor:
                                                                   P_Settings
                                                                       .color4,
@@ -496,7 +505,10 @@ class _LevelTwoState extends State<LevelTwo> {
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
-
+                                                              selected =
+                                                                  value.specialelements[
+                                                                          index]
+                                                                      ["value"];
                                                               fromDate = fromDate ==
                                                                       null
                                                                   ? dateFromShared
@@ -686,8 +698,9 @@ class _LevelTwoState extends State<LevelTwo> {
                                         String tileName = value
                                             .l2newList[index].values
                                             .elementAt(1);
-Provider.of<Controller>(context,
-                                              listen: false).newListClear("level2");
+                                        Provider.of<Controller>(context,
+                                                listen: false)
+                                            .newListClear("level2");
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -924,8 +937,9 @@ Provider.of<Controller>(context,
                                               .elementAt(1)
                                           : value.level2reportList[index].values
                                               .elementAt(1);
-                                              Provider.of<Controller>(context,
-                                              listen: false).newListClear("level2");
+                                      Provider.of<Controller>(context,
+                                              listen: false)
+                                          .newListClear("level2");
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

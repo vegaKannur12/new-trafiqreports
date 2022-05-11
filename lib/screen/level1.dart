@@ -39,6 +39,8 @@ class _LevelOneState extends State<LevelOne> {
   String? formattedDate;
   String? fromDate;
   String? toDate;
+  String selected = "";
+
   String? crntDateFormat;
   Icon actionIcon = const Icon(Icons.search);
   var encodedTablejson;
@@ -110,6 +112,7 @@ class _LevelOneState extends State<LevelOne> {
     // setSharedPreftojsondata();
     getShared();
     createShrinkedData();
+    selected="1";
     // Provider.of<Controller>(context, listen: false).listForTable.length =
     //     Provider.of<Controller>(context, listen: false).level1reportList.length;
     // print(
@@ -413,7 +416,9 @@ class _LevelOneState extends State<LevelOne> {
                                                                     .styleFrom(
                                                               // shape: StadiumBorder(),
 
-                                                              primary: P_Settings
+                                                              primary:selected==value
+                                                        .specialelements[index]["value"]? P_Settings
+                                                                  .l1appbarColor :P_Settings
                                                                   .l1datatablecolor,
                                                               shadowColor:
                                                                   P_Settings
@@ -457,6 +462,11 @@ class _LevelOneState extends State<LevelOne> {
                                                                       toDate!);
 
                                                               specialField =
+                                                                  value.specialelements[
+                                                                          index]
+                                                                      ["value"];
+
+                                                                      selected =
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
