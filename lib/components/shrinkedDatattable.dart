@@ -66,9 +66,9 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
         headingRowHeight: 35,
         dataRowHeight: 35,
         horizontalMargin: 5,
-        decoration: BoxDecoration(color: P_Settings.datatableColor),
+        decoration: BoxDecoration(color: P_Settings.l1totColor),
         border: TableBorder.all(
-          color: P_Settings.datatableColor,
+          color: P_Settings.l1totColor,
         ),
         dataRowColor:
             MaterialStateColor.resolveWith((states) => widget.level == "level1"

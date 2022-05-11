@@ -43,9 +43,9 @@ class P_Settings {
 
 /////////////////////////level1///////////////////////////////////////////////
 
-  static Color get l1appbarColor => Color.fromARGB(255, 109, 6, 226);
-  static Color get l1datatablecolor => Color.fromARGB(255, 185, 147, 231);
-  static Color get l1totColor => Color.fromARGB(255, 220, 205, 236);
+  static Color get l1appbarColor => Color.fromARGB(255, 219, 45, 45);
+  static Color get l1datatablecolor => Color.fromARGB(252, 238, 127, 127);
+  static Color get l1totColor => Color.fromARGB(244, 252, 249, 252);
 
 // static Color get appbarColor => Color.fromARGB(255, 109, 6, 226);
 
