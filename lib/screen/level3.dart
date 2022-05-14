@@ -23,8 +23,10 @@ class LevelThree extends StatefulWidget {
   String old_filter_where_ids;
   String filter_id;
   List<String> filters;
+  String reportelemet;
   LevelThree(
-      {required this.hometileName,
+      {required this.reportelemet,
+      required this.hometileName,
       required this.level1tileName,
       required this.level2tileName,
       required this.old_filter_where_ids,
@@ -45,7 +47,7 @@ class _LevelThreeState extends State<LevelThree> {
   bool qtyvisible = false;
   String? formattedDate;
   String? fromDate;
-  String selected="";
+  String selected = "";
   String? toDate;
   String? crntDateFormat;
   Icon actionIcon = Icon(Icons.search);
@@ -262,7 +264,6 @@ class _LevelThreeState extends State<LevelThree> {
     // print("isExpanded---$isExpanded");
     // print("visible---$visible");
     selected = Provider.of<Controller>(context, listen: false).special!;
-
   }
 
   @override
@@ -438,10 +439,9 @@ class _LevelThreeState extends State<LevelThree> {
                       ),
                     )
                   : Consumer<Controller>(builder: (context, value, child) {
-                      if (value.reportList != null &&
-                          value.reportList.isEmpty) {
+                      {
                         type =
-                            value.reportList[4]["report_elements"].toString();
+                            widget.reportelemet;
                         List<String> parts = type!.split(',');
                         type1 = parts[0].trim(); // prefix: "date"
                         type2 = parts[1].trim(); // prefix: "date"
@@ -464,59 +464,7 @@ class _LevelThreeState extends State<LevelThree> {
                                           width: size.width * 0.1,
                                         ),
                                       ),
-                                      type1 != "F" && type2 != "T"
-                                          ? Row(
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {
-                                                      _selectFromDate(context);
-                                                    },
-                                                    icon: Icon(
-                                                        Icons.calendar_month)),
-                                                fromDate == null
-                                                    ? InkWell(
-                                                        onTap: () {
-                                                          _selectFromDate(
-                                                              context);
-                                                        },
-                                                        child: Text(
-                                                            dateFromShared
-                                                                .toString()))
-                                                    : InkWell(
-                                                        onTap: (() {
-                                                          _selectFromDate(
-                                                              context);
-                                                        }),
-                                                        child: Text(fromDate
-                                                            .toString()))
-                                              ],
-                                            )
-                                          : Row(
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {
-                                                      _selectFromDate(context);
-                                                    },
-                                                    icon: Icon(
-                                                        Icons.calendar_month)),
-                                                fromDate == null
-                                                    ? InkWell(
-                                                        onTap: (() {
-                                                          _selectFromDate(
-                                                              context);
-                                                        }),
-                                                        child: Text(
-                                                            dateFromShared
-                                                                .toString()))
-                                                    : InkWell(
-                                                        onTap: () {
-                                                          _selectFromDate(
-                                                              context);
-                                                        },
-                                                        child: Text(fromDate
-                                                            .toString()))
-                                              ],
-                                            ),
+                                     
                                       Row(
                                         children: [
                                           IconButton(
@@ -605,10 +553,15 @@ class _LevelThreeState extends State<LevelThree> {
                                                             style:
                                                                 ElevatedButton
                                                                     .styleFrom(
-                                                                 primary:selected==value
-                                                        .specialelements[index]["value"]? P_Settings
-                                                                  .l3appbarColor:P_Settings
-                                                                  .l3datatablecolor,
+                                                              primary: selected ==
+                                                                      value.specialelements[
+                                                                              index]
+                                                                          [
+                                                                          "value"]
+                                                                  ? P_Settings
+                                                                      .l3appbarColor
+                                                                  : P_Settings
+                                                                      .l3datatablecolor,
                                                               shadowColor:
                                                                   P_Settings
                                                                       .color4,
@@ -622,7 +575,7 @@ class _LevelThreeState extends State<LevelThree> {
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
-                                                                      selected =
+                                                              selected =
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
@@ -737,7 +690,7 @@ class _LevelThreeState extends State<LevelThree> {
                       child: const Text(
                         "No data Found!!!",
                         style: const TextStyle(fontSize: 20),
-                      ) ,
+                      ),
                     );
                   }
                   if (value.isSearch && value.l3newList.length > 0) {

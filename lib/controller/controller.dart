@@ -114,6 +114,8 @@ class Controller extends ChangeNotifier {
         reportList.add(item);
         // notifyListeners();
       }
+
+      print("report date type ...........${reportList}");
       print("report list${reportList}");
       final jsonData = reportList[0]['special_element2'];
 

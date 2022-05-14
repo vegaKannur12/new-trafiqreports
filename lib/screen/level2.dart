@@ -26,8 +26,10 @@ class LevelTwo extends StatefulWidget {
   String filter_id;
   String tile;
   List<String> filters;
+  String reportelement;
   LevelTwo(
-      {required this.hometileName,
+      {required this.reportelement,
+      required this.hometileName,
       required this.level1tileName,
       required this.old_filter_where_ids,
       required this.filter_id,
@@ -250,11 +252,10 @@ class _LevelTwoState extends State<LevelTwo> {
                       ),
                     )
                   : Consumer<Controller>(builder: (context, value, child) {
-                      if (value.reportList != null &&
-                          value.reportList.isEmpty) {
-                        type =
-                            value.reportList[4]["report_elements"].toString();
+                      {
+                        type = widget.reportelement;
                         List<String> parts = type!.split(',');
+                        print("type..............$type");
                         type1 = parts[0].trim(); // prefix: "date"
                         type2 = parts[1].trim(); // prefix: "date"
                       }
@@ -276,32 +277,32 @@ class _LevelTwoState extends State<LevelTwo> {
                                           width: size.width * 0.1,
                                         ),
                                       ),
-                                      type1 != "F" && type2 != "T"
+                                      type1 == "F"
                                           ? Row(
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
                                                       selectD.selectDate(
                                                           context,
-                                                          "level2",
+                                                          "level1",
                                                           widget.filter_id,
                                                           widget
                                                               .old_filter_where_ids,
-                                                          "from date");
+                                                          "to date");
                                                     },
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                         Icons.calendar_month)),
                                                 selectD.fromDate == null
                                                     ? InkWell(
-                                                        onTap: () {
+                                                        onTap: (() {
                                                           selectD.selectDate(
                                                               context,
-                                                              "level2",
+                                                              "level1",
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
-                                                              "from date");
-                                                        },
+                                                              "to date");
+                                                        }),
                                                         child: Text(Provider.of<
                                                                     Controller>(
                                                                 context,
@@ -309,109 +310,77 @@ class _LevelTwoState extends State<LevelTwo> {
                                                             .fromDate
                                                             .toString()))
                                                     : InkWell(
-                                                        onTap: (() {
+                                                        onTap: () {
                                                           selectD.selectDate(
                                                               context,
-                                                              "level2",
+                                                              "level1",
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
                                                               "from date");
-                                                        }),
+                                                        },
                                                         child: Text(selectD
                                                             .fromDate
                                                             .toString()))
                                               ],
                                             )
                                           : Row(
+                                              children: [],
+                                            ),
+                                      type2 == "T"
+                                          ? Row(
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
                                                       selectD.selectDate(
                                                           context,
-                                                          "level2",
+                                                          "level1",
                                                           widget.filter_id,
                                                           widget
                                                               .old_filter_where_ids,
                                                           "from date");
                                                     },
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                         Icons.calendar_month)),
                                                 selectD.fromDate == null
                                                     ? InkWell(
                                                         onTap: (() {
                                                           selectD.selectDate(
                                                               context,
-                                                              "level2",
+                                                              "level1",
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
-                                                              "from date");
+                                                              "to date");
                                                         }),
                                                         child: Text(Provider.of<
                                                                     Controller>(
                                                                 context,
                                                                 listen: false)
-                                                            .fromDate
+                                                            .todate
                                                             .toString()))
                                                     : InkWell(
                                                         onTap: () {
                                                           selectD.selectDate(
                                                               context,
-                                                              "level2",
+                                                              "level1",
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
                                                               "from date");
                                                         },
-                                                        child: Text(selectD
-                                                            .fromDate
-                                                            .toString()))
+                                                        child: Text(
+                                                          selectD.toDate
+                                                              .toString(),
+                                                        ),
+                                                      ),
                                               ],
+                                            )
+                                          : Row(
+                                              children: [],
                                             ),
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {
-                                                selectD.selectDate(
-                                                    context,
-                                                    "level2",
-                                                    widget.filter_id,
-                                                    widget.old_filter_where_ids,
-                                                    "to date");
-                                              },
-                                              icon: Icon(Icons.calendar_month)),
-                                          selectD.toDate == null
-                                              ? InkWell(
-                                                  onTap: () {
-                                                    selectD.selectDate(
-                                                        context,
-                                                        "level2",
-                                                        widget.filter_id,
-                                                        widget
-                                                            .old_filter_where_ids,
-                                                        "to date");
-                                                  },
-                                                  child: Text(
-                                                      Provider.of<Controller>(
-                                                              context,
-                                                              listen: false)
-                                                          .todate
-                                                          .toString()))
-                                              : InkWell(
-                                                  onTap: () {
-                                                    selectD.selectDate(
-                                                        context,
-                                                        "level2",
-                                                        widget.filter_id,
-                                                        widget
-                                                            .old_filter_where_ids,
-                                                        "to date");
-                                                  },
-                                                  child: Text(selectD.toDate
-                                                      .toString()))
-                                        ],
-                                      ),
+
+                                  
                                       qtyvisible
                                           ? SizedBox(
                                               width: size.width * 0.2,
