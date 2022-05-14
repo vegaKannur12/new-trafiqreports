@@ -19,13 +19,14 @@ class ShrinkedDatatable extends StatefulWidget {
 
 class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
   List<String> tableColumn = [];
+  double width = 0.0;
   Map<String, dynamic> valueMap = {};
   List<String>? colName;
   int i = 0;
   List<String>? rowName;
   Map<String, dynamic> mapTabledata = {};
   // var jsondata;
-
+  int colNo = 0;
   List<Map<String, dynamic>> newMp = [];
   String? behv;
   @override
@@ -35,6 +36,8 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
     if (widget.decodd != null) {
       mapTabledata = json.decode(widget.decodd);
       // print("json data----${jsondata}");
+      colNo = mapTabledata.length - 2;
+      print("colNumber---${colNo}");
     } else {
       print("null");
     }
@@ -59,6 +62,16 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width - 30;
+    if (colNo < 10) {
+      print("if");
+
+      width = width / colNo;
+    } else {
+      width = 60;
+      print("else");
+    }
+    print("width----${width}");
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
@@ -96,12 +109,9 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
       return DataColumn(
         tooltip: colsName,
         label: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: 60,
-            maxWidth: 200
-          ),
+          constraints: BoxConstraints(minWidth: width, maxWidth: width *2),
           child: Padding(
-                  padding: EdgeInsets.all(0.0),
+            padding: EdgeInsets.all(0.0),
 
             // padding: behv[1] == "L"? EdgeInsets.only(left:0.3):EdgeInsets.only(right:0.3),
             child: Text(
@@ -140,6 +150,7 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
           datacell.add(
             DataCell(
               Container(
+          constraints: BoxConstraints(minWidth: width, maxWidth: width *2),
                 // width: 70,
                 alignment: behv[1] == "L"
                     ? Alignment.centerLeft

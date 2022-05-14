@@ -18,13 +18,15 @@ class _SampleDataTableState extends State<SampleDataTable> {
       "a": "TLN1_BillNo",
       "b": "TLN1_MRNo",
       "c": "TLN5_Patient Name",
-      "d": "CRY1_Amt",
+      "d": "CRI1_Amt",
       "e": "CRY1_Paid",
       "f": "CRY1_Bal",
       "g": "TLN1_Name",
       "h": "CRY1_Bal",
       "i": "TLN1_cgh",
-      "j": "TLN1_kjdsj"
+      "j": "TLN1_kjdsj",
+      "k": "TLD1_date",
+
     },
     {
       "rank": "1",
@@ -37,7 +39,8 @@ class _SampleDataTableState extends State<SampleDataTable> {
       "g": "Anu",
       "h": "6859",
       "i": "CRcgh",
-      "j": "jkkjsdsa"
+      "j": "jkkjsdsa",
+      "k": "11/10/2020"
 
       // "h": "6859"
     },
@@ -52,7 +55,9 @@ class _SampleDataTableState extends State<SampleDataTable> {
       "g": "Graha",
       "h": "900",
       "i": "cgh",
-      "j": "bsdjhdd"
+      "j": "bsdjhdd",
+      "k": "11/10/2020"
+
     }
   ];
   List val = [100, 50, 20, 70, 150];
@@ -65,12 +70,14 @@ class _SampleDataTableState extends State<SampleDataTable> {
   List<String> tableColumn = [];
   List<String> behvr = [];
   Map<String, dynamic> mainHeader = {};
-
+  int col = 0;
   @override
   void initState() {
     String colsName;
     super.initState();
-    // print("jsondata[0]---$jsondata[0]");
+    print('jsondata[0].length---${jsondata[0].length}');
+    col = jsondata[0].length;
+
     mainHeader = jsondata[0];
     // print("main header from init state---$mainHeader");
     var list = jsondata[0].values.toList();
@@ -123,7 +130,9 @@ class _SampleDataTableState extends State<SampleDataTable> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     final double height = MediaQuery.of(context).size.height;
-
+    if (col <= 5) {
+      width / col;
+    }
     return Scaffold(
       appBar: AppBar(title: Text("Dynamic datatable")),
       body: InteractiveViewer(
@@ -229,20 +238,18 @@ class _SampleDataTableState extends State<SampleDataTable> {
               datacell.add(
                 DataCell(
                   Container(
-                  //  width:100,
+                    //  width:100,
                     // width: mainHeader[k][3] == "1" ? 70 : 30,
                     // alignment: mainHeader[k][1] == "L"
                     //     ? Alignment.centerLeft
                     //     : Alignment.centerRight,
-                    child: Expanded(
-                      child: Text(
-                        value.toString(),
-                        textAlign: mainHeader[k][1] == "L"
-                            ? TextAlign.left
-                            : TextAlign.right,
-                        style: TextStyle(
-                          fontSize: 10,
-                        ),
+                    child: Text(
+                      value.toString(),
+                      textAlign: mainHeader[k][1] == "L"
+                          ? TextAlign.left
+                          : TextAlign.right,
+                      style: TextStyle(
+                        fontSize: 10,
                       ),
                     ),
                   ),

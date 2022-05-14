@@ -33,6 +33,12 @@ class Controller extends ChangeNotifier {
   List<bool> l3isExpanded = [];
   List<bool> l4visible = [];
   List<bool> l4isExpanded = [];
+
+  List<bool> l1Shrinkvisible = [];
+  List<bool> l2Shrinkvisible = [];
+
+  List<bool> l3Shrinkvisible = [];
+
   String? fromDate;
   String? todate;
   String? searchkey;
@@ -173,6 +179,9 @@ class Controller extends ChangeNotifier {
         // print("l1length---${l1length}");
         l1isExpanded = List.generate(l1length, (index) => false);
         l1visible = List.generate(l1length, (index) => true);
+
+        l1Shrinkvisible = List.generate(l1length, (index) => true);
+
         // listForTable =List.generate(length, (index) =>  );
       }
       if (level == "level2") {
@@ -185,6 +194,9 @@ class Controller extends ChangeNotifier {
         l2length = level2reportList.length;
         l2isExpanded = List.generate(l2length, (index) => false);
         l2visible = List.generate(l2length, (index) => true);
+
+        l2Shrinkvisible = List.generate(l1length, (index) => true);
+
         // print("isExpanded---$isExpanded");
         // print("visible---$visible");
         // print("report list ---- ${level2reportList}");
@@ -199,6 +211,9 @@ class Controller extends ChangeNotifier {
         l3length = level3reportList.length;
         l3isExpanded = List.generate(l3length, (index) => false);
         l3visible = List.generate(l3length, (index) => true);
+
+        l3Shrinkvisible = List.generate(l1length, (index) => true);
+
         // print("isExpanded---$isExpanded");
         // print("visible---$visible");
         print("report list ---- ${level3reportList}");
@@ -206,7 +221,7 @@ class Controller extends ChangeNotifier {
       if (level == "level4") {
         var map4 = jsonDecode(response.body);
 
-        level4reportList.clear(); 
+        level4reportList.clear();
         for (var item in map4) {
           level4reportList.add(item);
         }

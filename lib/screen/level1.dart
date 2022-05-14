@@ -994,16 +994,7 @@ class _LevelOneState extends State<LevelOne> {
                                   ),
                                 ),
                                 SizedBox(height: size.height * 0.004),
-
-                                // Consumer<Controller>(
-                                //     builder: (context, value, child) {
-                                //   return Container(
-                                //     child: Text(value.listForTable.isEmpty
-                                //         ? "null"
-                                //         : value.listForTable[index]
-                                //             .toString()),
-                                //   );
-                                // })
+                                
                                 Provider.of<Controller>(context, listen: false)
                                         .l1isExpanded[index]
                                     ? Consumer<Controller>(
@@ -1027,7 +1018,8 @@ class _LevelOneState extends State<LevelOne> {
                                                     ));
                                         },
                                       )
-                                    : Visibility(
+                                    : 
+                                    Visibility(
                                         visible: Provider.of<Controller>(
                                                 context,
                                                 listen: false)

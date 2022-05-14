@@ -20,7 +20,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
   // List<Map<String, dynamic>> newMp = [];
   Map<String, dynamic> valueMap = {};
   Map<String, dynamic> totMap = {};
-
+  int colNo = 0;
+  double width = 0.0;
   List<String>? rowName;
 
   @override
@@ -32,6 +33,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
       // mapTabledata=widget.dedoded;
       // print("json data----${jsondata}");
       mapTabledata = widget.dedoded;
+      colNo = mapTabledata.length - 2;
+      print("colNumber---${colNo}");
     } else {
       print("null");
     }
@@ -70,6 +73,15 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width - 30;
+    if (colNo < 10) {
+      print("if");
+
+      width = width / colNo;
+    } else {
+      width = 60;
+      print("else");
+    }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
@@ -100,7 +112,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
       return DataColumn(
         tooltip: colsName,
         label: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 60, maxWidth: 200),
+          constraints: BoxConstraints(minWidth: 60,maxWidth: 200),
+          // constraints: BoxConstraints(minWidth: width, maxWidth: width * 2),
           child: Padding(
             padding: behv[1] == "L"
                 ? EdgeInsets.only(left: 0.2)
