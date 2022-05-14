@@ -33,55 +33,54 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
       // mapTabledata=widget.dedoded;
       // print("json data----${jsondata}");
       mapTabledata = widget.dedoded;
-      colNo = mapTabledata.length - 2;
+    print("mapTabledata---${mapTabledata}");
+
+      colNo = mapTabledata[0].length ;
       print("colNumber---${colNo}");
     } else {
       print("null");
     }
-    print("widget.dedoded----${widget.dedoded}");
     if (widget.dedoded != null) {
       mapTabledata[0].forEach((key, value) {
         tableColumn.add(key);
       });
     }
-    // calculateSum();
-    // mapTabledata.add(totMap);
-    // newMp.add(valueMap);
     print("tableColumn---${tableColumn}");
     // print("valueMap---${valueMap}");
     print("newMp---${mapTabledata}");
   }
 
-  calculateSum() {
-    for (var i = 0; i < tableColumn.length; i++) {
-      double sum = 0;
-      for (var item in mapTabledata) {
-        item.forEach((key, value) {
-          if (key == tableColumn[i]) {
-            if (tableColumn[i][2] == "Y") {
-              double valueStored = double.parse(value);
-              sum = sum + valueStored;
-              totMap[tableColumn[i]] = sum;
-            } else {
-              totMap[tableColumn[i]] = ' ';
-            }
-          }
-        });
-      }
-    }
-  }
+  // calculateSum() {
+  //   for (var i = 0; i < tableColumn.length; i++) {
+  //     double sum = 0;
+  //     for (var item in mapTabledata) {
+  //       item.forEach((key, value) {
+  //         if (key == tableColumn[i]) {
+  //           if (tableColumn[i][2] == "Y") {
+  //             double valueStored = double.parse(value);
+  //             sum = sum + valueStored;
+  //             totMap[tableColumn[i]] = sum;
+  //           } else {
+  //             totMap[tableColumn[i]] = ' ';
+  //           }
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width - 30;
+    width = MediaQuery.of(context).size.width - 60;
     if (colNo < 10) {
       print("if");
-
       width = width / colNo;
     } else {
       width = 60;
       print("else");
     }
+    print("width-ex---${width}");
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
@@ -112,7 +111,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
       return DataColumn(
         tooltip: colsName,
         label: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 60,maxWidth: 200),
+          constraints: BoxConstraints(minWidth: width, maxWidth: width *2),
           // constraints: BoxConstraints(minWidth: width, maxWidth: width * 2),
           child: Padding(
             padding: behv[1] == "L"
@@ -136,7 +135,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
     List<DataRow> items = [];
     var itemList = mapTabledata;
     for (var r = 0; r < itemList.length; r++) {
-      items.add(DataRow(
+      items.add(
+        DataRow(
           color: r == itemList.length - 1
               ? MaterialStateProperty.all(P_Settings.l1totColor)
               : widget.level == "level1"
@@ -164,7 +164,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
           rowName = tableColumn[i].split('_');
           colsName = rowName![1];
           behv = rowName![0];
-          // print("column---${tableColumn[i]}");
+          print("value---${value}");
           datacell.add(
             DataCell(
               Container(

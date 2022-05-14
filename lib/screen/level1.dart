@@ -540,7 +540,7 @@ class _LevelOneState extends State<LevelOne> {
                             var jsonEncoded =
                                 json.encode(value.l1newList[index]);
 
-                            print("${value.level1reportList[index]}");
+                            print("jsonEncoded---${jsonEncoded}");
 
                             // if (index < 0 ||
                             //     index >= value.level1reportList.length) {
@@ -784,10 +784,11 @@ class _LevelOneState extends State<LevelOne> {
                         shrinkWrap: true,
                         itemCount: value.level1reportList.length,
                         itemBuilder: (context, index) {
+                          print("level1reportList---${value.level1reportList[index]}");
                           var jsonEncoded =
                               json.encode(value.level1reportList[index]);
 
-                          print("${value.level1reportList[index]}");
+                          print("jsonEncoded---${jsonEncoded}");
 
                           if (index < 0 ||
                               index >= value.level1reportList.length) {
