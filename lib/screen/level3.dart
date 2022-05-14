@@ -543,9 +543,9 @@ class _LevelThreeState extends State<LevelThree> {
                                           ? SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon: const Icon(
+                                                icon:  Icon(
                                                     Icons.arrow_upward,
-                                                    color: Colors.deepPurple),
+                                                    color:  P_Settings.l3appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = false;
@@ -556,9 +556,9 @@ class _LevelThreeState extends State<LevelThree> {
                                           : SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon: const Icon(
+                                                icon:  Icon(
                                                     Icons.arrow_downward,
-                                                    color: Colors.deepPurple),
+                                                    color: P_Settings.l3appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = true;
@@ -701,7 +701,10 @@ class _LevelThreeState extends State<LevelThree> {
                 height: size.height * 0.05,
                 child: Row(
                   children: [
-                    Flexible(child: Text(titleName.toString())),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Flexible(child: Text(titleName.toString())),
+                    ),
                   ],
                 ),
               ),

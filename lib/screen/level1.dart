@@ -347,13 +347,14 @@ class _LevelOneState extends State<LevelOne> {
                                                       .toString()))
                                         ],
                                       ),
+                                      
                                       qtyvisible
                                           ? SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon: const Icon(
+                                                icon:  Icon(
                                                     Icons.arrow_upward,
-                                                    color: Colors.deepPurple),
+                                                    color: P_Settings.l1appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = false;
@@ -364,9 +365,9 @@ class _LevelOneState extends State<LevelOne> {
                                           : SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon: const Icon(
+                                                icon:  Icon(
                                                     Icons.arrow_downward,
-                                                    color: Colors.deepPurple),
+                                                    color:  P_Settings.l1appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = true;
@@ -379,142 +380,145 @@ class _LevelOneState extends State<LevelOne> {
                                 ),
                                 Visibility(
                                   visible: qtyvisible,
-                                  child: Row(
-                                    children: [
-                                      Consumer<Controller>(
-                                          builder: (context, value, child) {
-                                        {
-                                          return Flexible(
-                                            child: Container(
-                                              alignment: Alignment.topRight,
-                                              // color: P_Settings.datatableColor,
-                                              height: size.height * 0.07,
-                                              width: size.width * 1.2,
-                                              child: Row(
-                                                children: [
-                                                  ListView.builder(
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    physics:
-                                                        const PageScrollPhysics(),
-                                                    itemCount: value
-                                                        .specialelements.length,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(5.0),
-                                                        child: SizedBox(
-                                                          width:
-                                                              size.width * 0.3,
-                                                          // height: size.height*0.001,
-                                                          child: ElevatedButton(
-                                                            style:
-                                                                ElevatedButton
-                                                                    .styleFrom(
-                                                              // shape: StadiumBorder(),
+                                  child: Container(
+                                    // color: Colors.yellow,
+                                    child: Row(
+                                      children: [
+                                        Consumer<Controller>(
+                                            builder: (context, value, child) {
+                                          {
+                                            return Flexible(
+                                              child: Container(
+                                                alignment: Alignment.topRight,
+                                                // color: P_Settings.datatableColor,
+                                                height: size.height * 0.07,
+                                                width: size.width * 1.2,
+                                                child: Row(
+                                                  children: [
+                                                    ListView.builder(
+                                                      shrinkWrap: true,
+                                                      scrollDirection:
+                                                          Axis.horizontal,
+                                                      physics:
+                                                          const PageScrollPhysics(),
+                                                      itemCount: value
+                                                          .specialelements.length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(5.0),
+                                                          child: SizedBox(
+                                                            width:
+                                                                size.width * 0.3,
+                                                            // height: size.height*0.001,
+                                                            child: ElevatedButton(
+                                                              style:
+                                                                  ElevatedButton
+                                                                      .styleFrom(
+                                                                // shape: StadiumBorder(),
 
-                                                              primary: selected ==
-                                                                      value.specialelements[
-                                                                              index]
-                                                                          [
-                                                                          "value"]
-                                                                  ? P_Settings
-                                                                      .l1appbarColor
-                                                                  : P_Settings
-                                                                      .l1datatablecolor,
-                                                              shadowColor:
-                                                                  P_Settings
-                                                                      .color4,
-                                                              // minimumSize:
-                                                              //     Size(100, 100),
-                                                              // maximumSize:
-                                                              //     Size(100, 100),
-                                                            ),
-                                                            onPressed: () {
-                                                              fromDate = fromDate ==
-                                                                      null
-                                                                  ? Provider.of<
-                                                                              Controller>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .fromDate
-                                                                      .toString()
-                                                                  : fromDate
-                                                                      .toString();
+                                                                primary: selected ==
+                                                                        value.specialelements[
+                                                                                index]
+                                                                            [
+                                                                            "value"]
+                                                                    ? P_Settings
+                                                                        .l1appbarColor
+                                                                    : P_Settings
+                                                                        .l1datatablecolor,
+                                                                shadowColor:
+                                                                    P_Settings
+                                                                        .color4,
+                                                                // minimumSize:
+                                                                //     Size(100, 100),
+                                                                // maximumSize:
+                                                                //     Size(100, 100),
+                                                              ),
+                                                              onPressed: () {
+                                                                fromDate = fromDate ==
+                                                                        null
+                                                                    ? Provider.of<
+                                                                                Controller>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .fromDate
+                                                                        .toString()
+                                                                    : fromDate
+                                                                        .toString();
 
-                                                              toDate = toDate ==
-                                                                      null
-                                                                  ? Provider.of<
-                                                                              Controller>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .todate
-                                                                      .toString()
-                                                                  : toDate
-                                                                      .toString();
+                                                                toDate = toDate ==
+                                                                        null
+                                                                    ? Provider.of<
+                                                                                Controller>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .todate
+                                                                        .toString()
+                                                                    : toDate
+                                                                        .toString();
 
-                                                              Provider.of<Controller>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .setDate(
-                                                                      fromDate!,
-                                                                      toDate!);
+                                                                Provider.of<Controller>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .setDate(
+                                                                        fromDate!,
+                                                                        toDate!);
 
-                                                              specialField =
-                                                                  value.specialelements[
-                                                                          index]
-                                                                      ["value"];
+                                                                specialField =
+                                                                    value.specialelements[
+                                                                            index]
+                                                                        ["value"];
 
-                                                              selected =
-                                                                  value.specialelements[
-                                                                          index]
-                                                                      ["value"];
-                                                              Provider.of<Controller>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .setSpecialField(
-                                                                      specialField!);
-                                                              Provider.of<Controller>(
-                                                                      context,
-                                                                      listen:
-                                                                          false)
-                                                                  .getSubCategoryReportList(
-                                                                      specialField!,
-                                                                      widget
-                                                                          .filter_id,
-                                                                      fromDate!,
-                                                                      toDate!,
-                                                                      widget
-                                                                          .old_filter_where_ids,
-                                                                      "level1");
-                                                            },
-                                                            child: Text(
-                                                              value.specialelements[
-                                                                      index]
-                                                                  ["label"],
-                                                              style: const TextStyle(
-                                                                  color: Colors
-                                                                      .white),
+                                                                selected =
+                                                                    value.specialelements[
+                                                                            index]
+                                                                        ["value"];
+                                                                Provider.of<Controller>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .setSpecialField(
+                                                                        specialField!);
+                                                                Provider.of<Controller>(
+                                                                        context,
+                                                                        listen:
+                                                                            false)
+                                                                    .getSubCategoryReportList(
+                                                                        specialField!,
+                                                                        widget
+                                                                            .filter_id,
+                                                                        fromDate!,
+                                                                        toDate!,
+                                                                        widget
+                                                                            .old_filter_where_ids,
+                                                                        "level1");
+                                                              },
+                                                              child: Text(
+                                                                value.specialelements[
+                                                                        index]
+                                                                    ["label"],
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  ),
-                                                ],
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                      })
-                                    ],
+                                            );
+                                          }
+                                        })
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
@@ -776,7 +780,10 @@ class _LevelOneState extends State<LevelOne> {
                                                     ? Container(
                                                         height: 40,
                                                         child:
-                                                            const CircularProgressIndicator())
+                                                            CircularProgressIndicator(
+                                                              color: P_Settings
+                                                              .l1appbarColor,
+                                                            ))
                                                     : ExpandedDatatable(
                                                         dedoded: index >= 0
                                                             ? value.l1listForTable[
@@ -1011,7 +1018,10 @@ class _LevelOneState extends State<LevelOne> {
                                                   ? Container(
                                                       height: 40,
                                                       child:
-                                                          const CircularProgressIndicator())
+                                                           CircularProgressIndicator(
+                                                             color: P_Settings
+                                                              .l1appbarColor,
+                                                           ))
                                                   : ExpandedDatatable(
                                                       dedoded: value
                                                           .expndmapTabledata,
