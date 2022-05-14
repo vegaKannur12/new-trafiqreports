@@ -112,7 +112,7 @@ class _LevelOneState extends State<LevelOne> {
     // setSharedPreftojsondata();
     getShared();
     createShrinkedData();
-    selected="1";
+    selected = "1";
     // Provider.of<Controller>(context, listen: false).listForTable.length =
     //     Provider.of<Controller>(context, listen: false).level1reportList.length;
     // print(
@@ -416,10 +416,15 @@ class _LevelOneState extends State<LevelOne> {
                                                                     .styleFrom(
                                                               // shape: StadiumBorder(),
 
-                                                              primary:selected==value
-                                                        .specialelements[index]["value"]? P_Settings
-                                                                  .l1appbarColor :P_Settings
-                                                                  .l1datatablecolor,
+                                                              primary: selected ==
+                                                                      value.specialelements[
+                                                                              index]
+                                                                          [
+                                                                          "value"]
+                                                                  ? P_Settings
+                                                                      .l1appbarColor
+                                                                  : P_Settings
+                                                                      .l1datatablecolor,
                                                               shadowColor:
                                                                   P_Settings
                                                                       .color4,
@@ -466,7 +471,7 @@ class _LevelOneState extends State<LevelOne> {
                                                                           index]
                                                                       ["value"];
 
-                                                                      selected =
+                                                              selected =
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
@@ -564,7 +569,7 @@ class _LevelOneState extends State<LevelOne> {
                             var jsonEncoded =
                                 json.encode(value.l1newList[index]);
 
-                            print("${value.level1reportList[index]}");
+                            print("jsonEncoded---${jsonEncoded}");
 
                             // if (index < 0 ||
                             //     index >= value.level1reportList.length) {
@@ -807,10 +812,11 @@ class _LevelOneState extends State<LevelOne> {
                         shrinkWrap: true,
                         itemCount: value.level1reportList.length,
                         itemBuilder: (context, index) {
+                          print("level1reportList---${value.level1reportList[index]}");
                           var jsonEncoded =
                               json.encode(value.level1reportList[index]);
 
-                          print("${value.level1reportList[index]}");
+                          print("jsonEncoded---${jsonEncoded}");
 
                           if (index < 0 ||
                               index >= value.level1reportList.length) {
@@ -994,7 +1000,6 @@ class _LevelOneState extends State<LevelOne> {
                                   ),
                                 ),
                                 SizedBox(height: size.height * 0.004),
-                                
                                 Provider.of<Controller>(context, listen: false)
                                         .l1isExpanded[index]
                                     ? Consumer<Controller>(
@@ -1018,8 +1023,7 @@ class _LevelOneState extends State<LevelOne> {
                                                     ));
                                         },
                                       )
-                                    : 
-                                    Visibility(
+                                    : Visibility(
                                         visible: Provider.of<Controller>(
                                                 context,
                                                 listen: false)

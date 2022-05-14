@@ -35,9 +35,9 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
     super.initState();
     if (widget.decodd != null) {
       mapTabledata = json.decode(widget.decodd);
-      // print("json data----${jsondata}");
+      print("shrinked   mapTabledata---${mapTabledata}");
       colNo = mapTabledata.length - 2;
-      print("colNumber---${colNo}");
+      // print("colNumber---${colNo}");
     } else {
       print("null");
     }

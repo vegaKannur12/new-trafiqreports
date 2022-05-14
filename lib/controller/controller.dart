@@ -169,7 +169,7 @@ class Controller extends ChangeNotifier {
       notifyListeners();
       if (level == "level1") {
         var map1 = jsonDecode(response.body);
-
+        print("map1----${map1}");
         level1reportList.clear();
         for (var item in map1) {
           level1reportList.add(item);
@@ -542,9 +542,16 @@ class Controller extends ChangeNotifier {
         item.forEach((key, value) {
           if (key == expndtableColumn[i]) {
             if (expndtableColumn[i][2] == "Y") {
+              // value.toStringAsFixed(2);
               double valueStored = double.parse(value);
               sum = sum + valueStored;
-              totMap[expndtableColumn[i]] = sum;
+              String d2 = sum.toStringAsFixed(2); 
+              print("double porecision----${d2}");
+              double modSum=double.parse(d2);
+              print("modified-----${modSum}");
+
+              // Print("modified-----${modSum}");
+              totMap[expndtableColumn[i]] = modSum;
             } else {
               // sum='';
               totMap[expndtableColumn[i]] = ' ';
