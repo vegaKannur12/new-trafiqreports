@@ -379,8 +379,6 @@ class _LevelTwoState extends State<LevelTwo> {
                                           : Row(
                                               children: [],
                                             ),
-
-                                  
                                       qtyvisible
                                           ? SizedBox(
                                               width: size.width * 0.2,
@@ -674,6 +672,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => LevelThree(
+                                                reportelemet: widget.reportelement,
                                                     hometileName:
                                                         widget.hometileName,
                                                     level1tileName:
@@ -913,6 +912,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => LevelThree(
+                                              reportelemet: widget.reportelement,
                                                   hometileName:
                                                       widget.hometileName,
                                                   level1tileName:
