@@ -25,7 +25,8 @@ class _HomePageState extends State<HomePage> {
   String? formattedDate;
   String? crntFromDateFormat;
   String? crntToDateFormat;
-
+  String? specialelement;
+  String reportelements = "";
   String searchkey = "";
   bool isSearch = false;
   bool visible = true;
@@ -409,6 +410,9 @@ class _HomePageState extends State<HomePage> {
                                   .todate = toDate;
                               filter =
                                   value.reportList[index]["filters"].toString();
+                              reportelements =
+                                  value.reportList[index]["report_elements"].toString();
+                                  print("specialelement...........$specialelement");
                               print("filter ..............$filter");
                               List<String> parts = filter!.split(',');
                               print("parts-----$parts");
@@ -416,7 +420,7 @@ class _HomePageState extends State<HomePage> {
                               print(
                                   "home page filtersss ..............$filter1");
                               String old_filter_where_ids = "0,";
-                              
+
                               String special_field2 =
                                   value.specialelements[0]["value"];
                               print(special_field2);
@@ -445,6 +449,7 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => LevelOne(
+                                      reportelements: reportelements,
                                       old_filter_where_ids:
                                           old_filter_where_ids,
                                       filter_id: filter1!,

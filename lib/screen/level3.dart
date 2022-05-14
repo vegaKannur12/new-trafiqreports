@@ -15,6 +15,8 @@ import 'package:reports/controller/controller.dart';
 import 'package:reports/screen/level4.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../components/selectDate.dart';
+
 class LevelThree extends StatefulWidget {
   String hometileName;
   String level1tileName;
@@ -23,8 +25,10 @@ class LevelThree extends StatefulWidget {
   String old_filter_where_ids;
   String filter_id;
   List<String> filters;
+  String reportelemet;
   LevelThree(
-      {required this.hometileName,
+      {required this.reportelemet,
+      required this.hometileName,
       required this.level1tileName,
       required this.level2tileName,
       required this.old_filter_where_ids,
@@ -45,7 +49,7 @@ class _LevelThreeState extends State<LevelThree> {
   bool qtyvisible = false;
   String? formattedDate;
   String? fromDate;
-  String selected="";
+  String selected = "";
   String? toDate;
   String? crntDateFormat;
   Icon actionIcon = Icon(Icons.search);
@@ -61,7 +65,7 @@ class _LevelThreeState extends State<LevelThree> {
 
   bool isSelected = true;
   bool buttonClicked = false;
-
+  SelectDate selectD = SelectDate();
   List<Map<String, dynamic>> shrinkedData = [];
   List<Map<String, dynamic>> jsonList = [];
   String? titleName;
@@ -149,86 +153,86 @@ class _LevelThreeState extends State<LevelThree> {
   }
 
 ///////////////////////////////////////////////////////////
-  Future _selectFromDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2020),
-        lastDate: DateTime(currentDate.year + 1),
-        builder: (BuildContext context, Widget? child) {
-          return Theme(
-              data: ThemeData.light().copyWith(
-                colorScheme: ColorScheme.light()
-                    .copyWith(primary: P_Settings.l3appbarColor),
-              ),
-              child: child!);
-        });
-    if (pickedDate != null) {
-      setState(() {
-        currentDate = pickedDate;
-      });
-    } else {
-      print("please select date");
-    }
-    fromDate = DateFormat('dd-MM-yyyy').format(currentDate);
-    fromDate =
-        fromDate == null ? dateFromShared.toString() : fromDate.toString();
+  // Future _selectFromDate(BuildContext context) async {
+  //   final DateTime? pickedDate = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime(2020),
+  //       lastDate: DateTime(currentDate.year + 1),
+  //       builder: (BuildContext context, Widget? child) {
+  //         return Theme(
+  //             data: ThemeData.light().copyWith(
+  //               colorScheme: ColorScheme.light()
+  //                   .copyWith(primary: P_Settings.l3appbarColor),
+  //             ),
+  //             child: child!);
+  //       });
+  //   if (pickedDate != null) {
+  //     setState(() {
+  //       currentDate = pickedDate;
+  //     });
+  //   } else {
+  //     print("please select date");
+  //   }
+  //   fromDate = DateFormat('dd-MM-yyyy').format(currentDate);
+  //   fromDate =
+  //       fromDate == null ? dateFromShared.toString() : fromDate.toString();
 
-    toDate = toDate == null ? datetoShared.toString() : toDate.toString();
+  //   toDate = toDate == null ? datetoShared.toString() : toDate.toString();
 
-    Provider.of<Controller>(context, listen: false).setDate(fromDate!, toDate!);
+  //   Provider.of<Controller>(context, listen: false).setDate(fromDate!, toDate!);
 
-    specialField = Provider.of<Controller>(context, listen: false).special;
+  //   specialField = Provider.of<Controller>(context, listen: false).special;
 
-    Provider.of<Controller>(context, listen: false).getSubCategoryReportList(
-        specialField!,
-        widget.filter_id,
-        fromDate!,
-        toDate!,
-        widget.old_filter_where_ids,
-        "level3");
-  }
+  //   Provider.of<Controller>(context, listen: false).getSubCategoryReportList(
+  //       specialField!,
+  //       widget.filter_id,
+  //       fromDate!,
+  //       toDate!,
+  //       widget.old_filter_where_ids,
+  //       "level3");
+  // }
 
 /////////////////////////////////////////////////////////////////
-  Future _selectToDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2020),
-        lastDate: DateTime(currentDate.year + 1),
-        builder: (BuildContext context, Widget? child) {
-          return Theme(
-              data: ThemeData.light().copyWith(
-                colorScheme: ColorScheme.light()
-                    .copyWith(primary: P_Settings.l3appbarColor),
-              ),
-              child: child!);
-        });
-    if (pickedDate != null) {
-      setState(() {
-        currentDate = pickedDate;
-      });
-    } else {
-      print("please select date");
-    }
-    toDate = DateFormat('dd-MM-yyyy').format(currentDate);
-    fromDate =
-        fromDate == null ? dateFromShared.toString() : fromDate.toString();
+  // Future _selectToDate(BuildContext context) async {
+  //   final DateTime? pickedDate = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime(2020),
+  //       lastDate: DateTime(currentDate.year + 1),
+  //       builder: (BuildContext context, Widget? child) {
+  //         return Theme(
+  //             data: ThemeData.light().copyWith(
+  //               colorScheme: ColorScheme.light()
+  //                   .copyWith(primary: P_Settings.l3appbarColor),
+  //             ),
+  //             child: child!);
+  //       });
+  //   if (pickedDate != null) {
+  //     setState(() {
+  //       currentDate = pickedDate;
+  //     });
+  //   } else {
+  //     print("please select date");
+  //   }
+  //   toDate = DateFormat('dd-MM-yyyy').format(currentDate);
+  //   fromDate =
+  //       fromDate == null ? dateFromShared.toString() : fromDate.toString();
 
-    toDate = toDate == null ? datetoShared.toString() : toDate.toString();
+  //   toDate = toDate == null ? datetoShared.toString() : toDate.toString();
 
-    Provider.of<Controller>(context, listen: false).setDate(fromDate!, toDate!);
+  //   Provider.of<Controller>(context, listen: false).setDate(fromDate!, toDate!);
 
-    specialField = Provider.of<Controller>(context, listen: false).special;
+  //   specialField = Provider.of<Controller>(context, listen: false).special;
 
-    Provider.of<Controller>(context, listen: false).getSubCategoryReportList(
-        specialField!,
-        widget.filter_id,
-        fromDate!,
-        toDate!,
-        widget.old_filter_where_ids,
-        "level3");
-  }
+  //   Provider.of<Controller>(context, listen: false).getSubCategoryReportList(
+  //       specialField!,
+  //       widget.filter_id,
+  //       fromDate!,
+  //       toDate!,
+  //       widget.old_filter_where_ids,
+  //       "level3");
+  // }
 
 /////////////////////////////////////////////////////////////////
   @override
@@ -262,7 +266,6 @@ class _LevelThreeState extends State<LevelThree> {
     // print("isExpanded---$isExpanded");
     // print("visible---$visible");
     selected = Provider.of<Controller>(context, listen: false).special!;
-
   }
 
   @override
@@ -438,10 +441,8 @@ class _LevelThreeState extends State<LevelThree> {
                       ),
                     )
                   : Consumer<Controller>(builder: (context, value, child) {
-                      if (value.reportList != null &&
-                          value.reportList.isEmpty) {
-                        type =
-                            value.reportList[4]["report_elements"].toString();
+                      {
+                        type = widget.reportelemet;
                         List<String> parts = type!.split(',');
                         type1 = parts[0].trim(); // prefix: "date"
                         type2 = parts[1].trim(); // prefix: "date"
@@ -464,88 +465,137 @@ class _LevelThreeState extends State<LevelThree> {
                                           width: size.width * 0.1,
                                         ),
                                       ),
-                                      type1 != "F" && type2 != "T"
+                                      type1 == "F"
                                           ? Row(
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
-                                                      _selectFromDate(context);
+                                                      selectD.selectDate(
+                                                          context,
+                                                          "level1",
+                                                          widget.filter_id,
+                                                          widget
+                                                              .old_filter_where_ids,
+                                                          "from date");
                                                     },
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                         Icons.calendar_month)),
-                                                fromDate == null
+                                                selectD.fromDate == null
                                                     ? InkWell(
-                                                        onTap: () {
-                                                          _selectFromDate(
-                                                              context);
-                                                        },
-                                                        child: Text(
-                                                            dateFromShared
-                                                                .toString()))
-                                                    : InkWell(
                                                         onTap: (() {
-                                                          _selectFromDate(
-                                                              context);
+                                                          selectD.selectDate(
+                                                              context,
+                                                              "level1",
+                                                              widget.filter_id,
+                                                              widget
+                                                                  .old_filter_where_ids,
+                                                              "from date");
                                                         }),
-                                                        child: Text(fromDate
+                                                        child: Text(Provider.of<
+                                                                    Controller>(
+                                                                context,
+                                                                listen: false)
+                                                            .fromDate
+                                                            .toString()))
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          selectD.selectDate(
+                                                              context,
+                                                              "level1",
+                                                              widget.filter_id,
+                                                              widget
+                                                                  .old_filter_where_ids,
+                                                              "from date");
+                                                        },
+                                                        child: Text(selectD
+                                                            .fromDate
                                                             .toString()))
                                               ],
                                             )
                                           : Row(
+                                              children: [],
+                                            ),
+                                      type2 == "T"
+                                          ? Row(
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
-                                                      _selectFromDate(context);
+                                                      selectD.selectDate(
+                                                          context,
+                                                          "level1",
+                                                          widget.filter_id,
+                                                          widget
+                                                              .old_filter_where_ids,
+                                                          "to date");
                                                     },
-                                                    icon: Icon(
+                                                    icon: const Icon(
                                                         Icons.calendar_month)),
-                                                fromDate == null
+                                                selectD.fromDate == null
                                                     ? InkWell(
                                                         onTap: (() {
-                                                          _selectFromDate(
-                                                              context);
+                                                          selectD.selectDate(
+                                                              context,
+                                                              "level1",
+                                                              widget.filter_id,
+                                                              widget
+                                                                  .old_filter_where_ids,
+                                                              "to date");
                                                         }),
-                                                        child: Text(
-                                                            dateFromShared
-                                                                .toString()))
+                                                        child: Text(Provider.of<
+                                                                    Controller>(
+                                                                context,
+                                                                listen: false)
+                                                            .todate
+                                                            .toString()))
                                                     : InkWell(
                                                         onTap: () {
-                                                          _selectFromDate(
-                                                              context);
+                                                          selectD.selectDate(
+                                                              context,
+                                                              "level1",
+                                                              widget.filter_id,
+                                                              widget
+                                                                  .old_filter_where_ids,
+                                                              "to date");
                                                         },
-                                                        child: Text(fromDate
-                                                            .toString()))
+                                                        child: Text(
+                                                          selectD.toDate
+                                                              .toString(),
+                                                        ),
+                                                      ),
                                               ],
+                                            )
+                                          : Row(
+                                              children: [],
                                             ),
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {
-                                                _selectToDate(context);
-                                              },
-                                              icon: Icon(Icons.calendar_month)),
-                                          toDate == null
-                                              ? InkWell(
-                                                  onTap: () {
-                                                    _selectToDate(context);
-                                                  },
-                                                  child: Text(
-                                                      datetoShared.toString()))
-                                              : InkWell(
-                                                  onTap: () {
-                                                    _selectToDate(context);
-                                                  },
-                                                  child:
-                                                      Text(toDate.toString()))
-                                        ],
-                                      ),
+                                      // Row(
+                                      //   children: [
+                                      //     IconButton(
+                                      //         onPressed: () {
+                                      //           _selectToDate(context);
+                                      //         },
+                                      //         icon: Icon(Icons.calendar_month)),
+                                      //     toDate == null
+                                      //         ? InkWell(
+                                      //             onTap: () {
+                                      //               _selectToDate(context);
+                                      //             },
+                                      //             child: Text(
+                                      //                 datetoShared.toString()))
+                                      //         : InkWell(
+                                      //             onTap: () {
+                                      //               _selectToDate(context);
+                                      //             },
+                                      //             child:
+                                      //                 Text(toDate.toString()))
+                                      //   ],
+                                      // ),
                                       qtyvisible
                                           ? SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon:  Icon(
-                                                    Icons.arrow_upward,
-                                                    color:  P_Settings.l3appbarColor),
+                                                icon: Icon(Icons.arrow_upward,
+                                                    color: P_Settings
+                                                        .l3appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = false;
@@ -556,9 +606,9 @@ class _LevelThreeState extends State<LevelThree> {
                                           : SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon:  Icon(
-                                                    Icons.arrow_downward,
-                                                    color: P_Settings.l3appbarColor),
+                                                icon: Icon(Icons.arrow_downward,
+                                                    color: P_Settings
+                                                        .l3appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = true;
@@ -605,10 +655,15 @@ class _LevelThreeState extends State<LevelThree> {
                                                             style:
                                                                 ElevatedButton
                                                                     .styleFrom(
-                                                                 primary:selected==value
-                                                        .specialelements[index]["value"]? P_Settings
-                                                                  .l3appbarColor:P_Settings
-                                                                  .l3datatablecolor,
+                                                              primary: selected ==
+                                                                      value.specialelements[
+                                                                              index]
+                                                                          [
+                                                                          "value"]
+                                                                  ? P_Settings
+                                                                      .l3appbarColor
+                                                                  : P_Settings
+                                                                      .l3datatablecolor,
                                                               shadowColor:
                                                                   P_Settings
                                                                       .color4,
@@ -622,7 +677,7 @@ class _LevelThreeState extends State<LevelThree> {
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
-                                                                      selected =
+                                                              selected =
                                                                   value.specialelements[
                                                                           index]
                                                                       ["value"];
@@ -740,7 +795,7 @@ class _LevelThreeState extends State<LevelThree> {
                       child: const Text(
                         "No data Found!!!",
                         style: const TextStyle(fontSize: 20),
-                      ) ,
+                      ),
                     );
                   }
                   if (value.isSearch && value.l3newList.length > 0) {

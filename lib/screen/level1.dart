@@ -21,8 +21,10 @@ class LevelOne extends StatefulWidget {
   String filter_id;
   String tilName;
   List<String> filters;
+  String reportelements;
   LevelOne(
-      {required this.old_filter_where_ids,
+      {required this.reportelements,
+      required this.old_filter_where_ids,
       required this.filter_id,
       required this.tilName,
       required this.filters});
@@ -184,13 +186,17 @@ class _LevelOneState extends State<LevelOne> {
                       ),
                     )
                   : Consumer<Controller>(builder: (context, value, child) {
-                      if (value.reportList != null &&
-                          value.reportList.isEmpty) {
-                        type =
-                            value.reportList[4]["report_elements"].toString();
+                      {
+                        print("helloo");
+                        type = widget.reportelements.toString();
+                        // value.reportList[4]["report_elements"].toString();
+                        print("type..............$type");
                         List<String> parts = type!.split(',');
-                        type1 = parts[0].trim(); // prefix: "date"
-                        type2 = parts[1].trim(); // prefix: "date"
+                        type1 = parts[0].trim();
+                        print("type 1.............$type1");
+                        type2 = parts[1].trim();
+                        print("type 2.............$type2");
+                        // prefix: "date"
                       }
                       {
                         return Container(
@@ -210,7 +216,7 @@ class _LevelOneState extends State<LevelOne> {
                                           width: size.width * 0.1,
                                         ),
                                       ),
-                                      type1 != "F" && type2 != "T"
+                                      type1 == "F"
                                           ? Row(
                                               children: [
                                                 IconButton(
@@ -227,22 +233,6 @@ class _LevelOneState extends State<LevelOne> {
                                                         Icons.calendar_month)),
                                                 selectD.fromDate == null
                                                     ? InkWell(
-                                                        onTap: () {
-                                                          selectD.selectDate(
-                                                              context,
-                                                              "level1",
-                                                              widget.filter_id,
-                                                              widget
-                                                                  .old_filter_where_ids,
-                                                              "from date");
-                                                        },
-                                                        child: Text(Provider.of<
-                                                                    Controller>(
-                                                                context,
-                                                                listen: false)
-                                                            .fromDate
-                                                            .toString()))
-                                                    : InkWell(
                                                         onTap: (() {
                                                           selectD.selectDate(
                                                               context,
@@ -252,12 +242,32 @@ class _LevelOneState extends State<LevelOne> {
                                                                   .old_filter_where_ids,
                                                               "from date");
                                                         }),
+                                                        child: Text(Provider.of<
+                                                                    Controller>(
+                                                                context,
+                                                                listen: false)
+                                                            .fromDate
+                                                            .toString()))
+                                                    : InkWell(
+                                                        onTap: () {
+                                                          selectD.selectDate(
+                                                              context,
+                                                              "level1",
+                                                              widget.filter_id,
+                                                              widget
+                                                                  .old_filter_where_ids,
+                                                              "from date");
+                                                        },
                                                         child: Text(selectD
                                                             .fromDate
                                                             .toString()))
                                               ],
                                             )
                                           : Row(
+                                              children: [],
+                                            ),
+                                      type2 == "T"
+                                          ? Row(
                                               children: [
                                                 IconButton(
                                                     onPressed: () {
@@ -267,7 +277,7 @@ class _LevelOneState extends State<LevelOne> {
                                                           widget.filter_id,
                                                           widget
                                                               .old_filter_where_ids,
-                                                          "from date");
+                                                          "to date");
                                                     },
                                                     icon: const Icon(
                                                         Icons.calendar_month)),
@@ -280,13 +290,13 @@ class _LevelOneState extends State<LevelOne> {
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
-                                                              "from date");
+                                                              "to date");
                                                         }),
                                                         child: Text(Provider.of<
                                                                     Controller>(
                                                                 context,
                                                                 listen: false)
-                                                            .fromDate
+                                                            .todate
                                                             .toString()))
                                                     : InkWell(
                                                         onTap: () {
@@ -296,58 +306,18 @@ class _LevelOneState extends State<LevelOne> {
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
-                                                              "from date");
+                                                              "to date");
                                                         },
-                                                        child: Text(selectD
-                                                            .fromDate
-                                                            .toString()))
+                                                        child: Text(
+                                                          selectD.toDate
+                                                              .toString(),
+                                                        ),
+                                                      ),
                                               ],
+                                            )
+                                          : Row(
+                                              children: [],
                                             ),
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {
-                                                selectD.selectDate(
-                                                    context,
-                                                    "level1",
-                                                    widget.filter_id,
-                                                    widget.old_filter_where_ids,
-                                                    "to date");
-                                              },
-                                              icon: const Icon(
-                                                  Icons.calendar_month)),
-                                          selectD.toDate == null
-                                              ? InkWell(
-                                                  onTap: () {
-                                                    selectD.selectDate(
-                                                        context,
-                                                        "level1",
-                                                        widget.filter_id,
-                                                        widget
-                                                            .old_filter_where_ids,
-                                                        "to date");
-                                                  },
-                                                  child: Text(
-                                                      Provider.of<Controller>(
-                                                              context,
-                                                              listen: false)
-                                                          .todate
-                                                          .toString()))
-                                              : InkWell(
-                                                  onTap: () {
-                                                    selectD.selectDate(
-                                                        context,
-                                                        "level1",
-                                                        widget.filter_id,
-                                                        widget
-                                                            .old_filter_where_ids,
-                                                        "to date");
-                                                  },
-                                                  child: Text(selectD.toDate
-                                                      .toString()))
-                                        ],
-                                      ),
-                                      
                                       qtyvisible
                                           ? SizedBox(
                                               width: size.width * 0.2,
@@ -654,6 +624,7 @@ class _LevelOneState extends State<LevelOne> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => LevelTwo(
+                                                reportelement: widget.reportelements,
                                                     hometileName:
                                                         widget.tilName,
                                                     level1tileName: tileName,
@@ -903,6 +874,7 @@ class _LevelOneState extends State<LevelOne> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => LevelTwo(
+                                              reportelement: widget.reportelements,
                                                   hometileName: widget.tilName,
                                                   level1tileName: tileName,
                                                   old_filter_where_ids:
