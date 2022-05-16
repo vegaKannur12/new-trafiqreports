@@ -752,17 +752,31 @@ class _LevelThreeState extends State<LevelThree> {
                       }
                     }),
               Container(
+                width: double.infinity,
                 color: P_Settings.dateviewColor,
                 height: size.height * 0.05,
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Flexible(child: Text(titleName.toString())),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(titleName.toString())),
                 ),
               ),
+              // Container(
+              //   width: double.infinity,
+              //   color: P_Settings.dateviewColor,
+              //   height: size.height * 0.05,
+              //   child: Row(
+              //     children: [
+              //       Padding(
+              //         padding: const EdgeInsets.all(8.0),
+              //         child: SingleChildScrollView(
+              //             scrollDirection: Axis.horizontal,
+              //             child: Text(titleName.toString())),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               // Provider.of<Controller>(context, listen: false).isSearch &&
               //         Provider.of<Controller>(context, listen: false)
               //                 .l3newList
