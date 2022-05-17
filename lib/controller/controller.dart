@@ -545,6 +545,11 @@ class Controller extends ChangeNotifier {
           if (key == expndtableColumn[i]) {
             if (expndtableColumn[i][2] == "Y") {
               // value.toStringAsFixed(2);
+              print("value---- $value");
+              if(value==null){
+                print("null value");
+                value="0";
+              }
               double valueStored = double.parse(value);
               sum = sum + valueStored;
               String d2 = sum.toStringAsFixed(2); 
@@ -556,7 +561,7 @@ class Controller extends ChangeNotifier {
               totMap[expndtableColumn[i]] = d2;
             } else {
               // sum='';
-              totMap[expndtableColumn[i]] = ' ';
+              totMap[expndtableColumn[i]] = "0";
             }
           }
         });
