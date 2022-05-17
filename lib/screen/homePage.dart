@@ -117,7 +117,6 @@ class _HomePageState extends State<HomePage> {
         currentFromDate.year, currentFromDate.month - 1, currentFromDate.day);
     crntFromDateFormat = DateFormat('dd-MM-yyyy').format(currentD);
     crntToDateFormat = DateFormat('dd-MM-yyyy').format(currentToDate);
-
     super.initState();
     Provider.of<Controller>(context, listen: false).getCategoryReportList("1");
     reportType = Provider.of<Controller>(context, listen: false)
@@ -162,14 +161,11 @@ class _HomePageState extends State<HomePage> {
             ),
             selected: i == _selectedIndex,
             onTap: () {
-              _onSelectItem(i, value.reportCategoryList[i].values.elementAt(1));
               Provider.of<Controller>(context, listen: false)
                   .getCategoryReportList(
                       value.reportCategoryList[i].values.elementAt(0));
-              // Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(builder: (context) => Level1Sample()),
-              //               );
+              _onSelectItem(i, value.reportCategoryList[i].values.elementAt(1));
+              //  Provider.of<Controller>(context, listen: false).reportCategoryList.clear();
             });
       }));
     }
