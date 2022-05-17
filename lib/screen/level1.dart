@@ -130,6 +130,7 @@ class _LevelOneState extends State<LevelOne> {
     String? type;
     String? type1;
     String? type2;
+    String? type3;
 
     Size size = MediaQuery.of(context).size;
 
@@ -196,6 +197,8 @@ class _LevelOneState extends State<LevelOne> {
                         print("type 1.............$type1");
                         type2 = parts[1].trim();
                         print("type 2.............$type2");
+                        type3 = parts[2].trim();
+                        print("type 3.............$type3");
                         // prefix: "date"
                       }
                       {
@@ -348,9 +351,9 @@ class _LevelOneState extends State<LevelOne> {
                                     ],
                                   ),
                                 ),
-                                Visibility(
+                                 Visibility(
                                   visible: qtyvisible,
-                                  child: Row(
+                                  child: type3 == "S"?Row(
                                     children: [
                                       Consumer<Controller>(
                                           builder: (context, value, child) {
@@ -486,7 +489,7 @@ class _LevelOneState extends State<LevelOne> {
                                         }
                                       })
                                     ],
-                                  ),
+                                  ):Text(""),
                                 ),
                               ],
                             ),
@@ -621,7 +624,8 @@ class _LevelOneState extends State<LevelOne> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => LevelTwo(
-                                                reportelement: widget.reportelements,
+                                                    reportelement:
+                                                        widget.reportelements,
                                                     hometileName:
                                                         widget.tilName,
                                                     level1tileName: tileName,
@@ -784,7 +788,8 @@ class _LevelOneState extends State<LevelOne> {
                         shrinkWrap: true,
                         itemCount: value.level1reportList.length,
                         itemBuilder: (context, index) {
-                          print("level1reportList---${value.level1reportList[index]}");
+                          print(
+                              "level1reportList---${value.level1reportList[index]}");
                           var jsonEncoded =
                               json.encode(value.level1reportList[index]);
 
@@ -868,7 +873,8 @@ class _LevelOneState extends State<LevelOne> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => LevelTwo(
-                                              reportelement: widget.reportelements,
+                                                  reportelement:
+                                                      widget.reportelements,
                                                   hometileName: widget.tilName,
                                                   level1tileName: tileName,
                                                   old_filter_where_ids:

@@ -275,6 +275,7 @@ class _LevelThreeState extends State<LevelThree> {
     String? type;
     String? type1;
     String? type2;
+    String? type3;
 
     // for (var i = 0;
     //      i < Provider.of<Controller>(context, listen: false).getReportApi().length;
@@ -445,6 +446,7 @@ class _LevelThreeState extends State<LevelThree> {
                         List<String> parts = type!.split(',');
                         type1 = parts[0].trim(); // prefix: "date"
                         type2 = parts[1].trim(); // prefix: "date"
+                        type3 = parts[2].trim(); // prefix: "date"
                       }
                       {
                         return Container(
@@ -478,7 +480,7 @@ class _LevelThreeState extends State<LevelThree> {
                                                     _selectToDate(context);
                                                   },
                                                   child: Text(
-                                                      datetoShared.toString()))
+                                                      datetoShared.toString())) 
                                               : InkWell(
                                                   onTap: () {
                                                     _selectToDate(context);
@@ -519,7 +521,7 @@ class _LevelThreeState extends State<LevelThree> {
                                 ),
                                 Visibility(
                                   visible: qtyvisible,
-                                  child: Row(
+                                  child:type3 =="S" ? Row(
                                     children: [
                                       Consumer<Controller>(
                                           builder: (context, value, child) {
@@ -641,7 +643,7 @@ class _LevelThreeState extends State<LevelThree> {
                                         }
                                       })
                                     ],
-                                  ),
+                                  ):Text(""),
                                 ),
                               ],
                             ),

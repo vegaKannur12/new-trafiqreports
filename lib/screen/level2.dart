@@ -185,6 +185,7 @@ class _LevelTwoState extends State<LevelTwo> {
     String? type;
     String? type1;
     String? type2;
+    String? type3;
     /////////////////////////////////////////////////////////////////////
     Size size = MediaQuery.of(context).size;
 
@@ -258,6 +259,7 @@ class _LevelTwoState extends State<LevelTwo> {
                         print("type..............$type");
                         type1 = parts[0].trim(); // prefix: "date"
                         type2 = parts[1].trim(); // prefix: "date"
+                        type3 = parts[2].trim(); // prefix: "date"
                       }
                       {
                         return Container(
@@ -412,7 +414,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                 ),
                                 Visibility(
                                   visible: qtyvisible,
-                                  child: Row(
+                                  child: type3 == "S" ? Row(
                                     children: [
                                       Consumer<Controller>(
                                           builder: (context, value, child) {
@@ -532,7 +534,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                         }
                                       })
                                     ],
-                                  ),
+                                  ):Text(""),
                                 ),
                               ],
                             ),
