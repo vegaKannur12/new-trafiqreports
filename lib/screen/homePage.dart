@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:reports/components/customColor.dart';
@@ -369,17 +370,12 @@ class _HomePageState extends State<HomePage> {
           Consumer<Controller>(builder: (context, value, child) {
             {
               if (value.isLoading == true) {
-                return Container(
-                  alignment: Alignment.center,
-                  // height:300,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                    ],
-                  ));
-              }
+                    return Container(
+                      height: size.height * 0.6,
+                      child: SpinKitPouringHourGlassRefined(
+                          color: P_Settings.appbarColor),
+                    );
+                  }
               return Container(
                 height: size.height * 0.7,
                 child:ListView.builder(
