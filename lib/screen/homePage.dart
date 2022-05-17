@@ -445,7 +445,7 @@ class _HomePageState extends State<HomePage> {
                                   .isSearch = false;
                               String homeTile =
                                   value.reportList[index].values.elementAt(1);
-                              Future.delayed(Duration(milliseconds: 100), () {
+                             
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -459,7 +459,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                 );
-                              });
+                              
                             },
                             title: Column(
                               children: [
