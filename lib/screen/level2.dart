@@ -73,38 +73,38 @@ class _LevelTwoState extends State<LevelTwo> {
   var decodd;
   var encodedShrinkdata;
   var decoddShrinked;
-  final jsondata = [
-    {
-      "rank": "0",
-      "a": "TLN10_BillNo",
-      "b": "TLN10_MRNo",
-      "c": "TLN50_PatientName",
-      "d": "CRY10_Amt",
-      "e": "CRY10_Paid",
-      "f": "CRY10_Bal",
-      "g": "TLN10_Name",
-    },
-    {
-      "rank": "1",
-      "a": "G202204027",
-      "b": "TJAA2",
-      "c": "PRATHYEESH MAKRERI KANNUR",
-      "d": "472.5",
-      "e": "372.5",
-      "f": "100",
-      "g": "Anu",
-    },
-    {
-      "rank": "1",
-      "a": "G202204026",
-      "b": "TJAA2",
-      "c": "PRATHYEESH MAKRERI KANNUR",
-      "d": "1697.5",
-      "e": "1397.5",
-      "f": "300",
-      "g": "Graha",
-    }
-  ];
+  // final jsondata = [
+  //   {
+  //     "rank": "0",
+  //     "a": "TLN10_BillNo",
+  //     "b": "TLN10_MRNo",
+  //     "c": "TLN50_PatientName",
+  //     "d": "CRY10_Amt",
+  //     "e": "CRY10_Paid",
+  //     "f": "CRY10_Bal",
+  //     "g": "TLN10_Name",
+  //   },
+  //   {
+  //     "rank": "1",
+  //     "a": "G202204027",
+  //     "b": "TJAA2",
+  //     "c": "PRATHYEESH MAKRERI KANNUR",
+  //     "d": "472.5",
+  //     "e": "372.5",
+  //     "f": "100",
+  //     "g": "Anu",
+  //   },
+  //   {
+  //     "rank": "1",
+  //     "a": "G202204026",
+  //     "b": "TJAA2",
+  //     "c": "PRATHYEESH MAKRERI KANNUR",
+  //     "d": "1697.5",
+  //     "e": "1397.5",
+  //     "f": "300",
+  //     "g": "Graha",
+  //   }
+  // ];
   SelectDate selectD = SelectDate();
   String? dateFromShared;
   String? datetoShared;
@@ -114,29 +114,29 @@ class _LevelTwoState extends State<LevelTwo> {
     decodd = prefs.getString("json");
   }
 
-  setSharedPreftojsondata() async {
-    //print("enterd into shared");
-    encoded = json.encode(jsondata);
+  // setSharedPreftojsondata() async {
+  //   //print("enterd into shared");
+  //   encoded = json.encode(jsondata);
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    // print("encoded---$encoded");
-    prefs.setString("json", encoded);
-    // print("added to shred prefs");
-  }
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   // print("encoded---$encoded");
+  //   prefs.setString("json", encoded);
+  //   // print("added to shred prefs");
+  // }
 
   _onSelectItem(int index, String reportType) {
     _selectedIndex.value = index;
     Navigator.of(context).pop(); // close the drawer
   }
 
-  createShrinkedData() {
-    shrinkedData.clear();
-    // print("cleared---$shrinkedData");
-    shrinkedData.add(jsondata[0]);
-    shrinkedData.add(jsondata[jsondata.length - 1]);
-    // print("shrinked data --${shrinkedData}");
-    encodedShrinkdata = json.encode(shrinkedData);
-  }
+  // createShrinkedData() {
+  //   shrinkedData.clear();
+  //   // print("cleared---$shrinkedData");
+  //   shrinkedData.add(jsondata[0]);
+  //   shrinkedData.add(jsondata[jsondata.length - 1]);
+  //   // print("shrinked data --${shrinkedData}");
+  //   encodedShrinkdata = json.encode(shrinkedData);
+  // }
 
   // toggle(int i) {
   //   setState(() {
@@ -145,13 +145,13 @@ class _LevelTwoState extends State<LevelTwo> {
   //   });
   // }
 
-  setList() {
-    jsonList.clear();
-    jsondata.map((jsonField) {
-      jsonList.add(jsonField);
-    }).toList();
-    //print("json list--${jsonList}");
-  }
+  // setList() {
+  //   jsonList.clear();
+  //   jsondata.map((jsonField) {
+  //     jsonList.add(jsonField);
+  //   }).toList();
+  //   //print("json list--${jsonList}");
+  // }
 
 /////////////////////////////////////////////////////////////////
   @override
@@ -167,9 +167,9 @@ class _LevelTwoState extends State<LevelTwo> {
     // Provider.of<Controller>(context, listen: false).getReportApi();
 
     // print("initstate");
-    setSharedPreftojsondata();
-    getShared();
-    createShrinkedData();
+    // setSharedPreftojsondata();
+    // getShared();
+    // createShrinkedData();
     print("tile from level1---${widget.level1tileName}");
     titleName = widget.hometileName + ' ' + '/' + ' ' + widget.level1tileName;
     print("tileName---${titleName}");
@@ -263,7 +263,7 @@ class _LevelTwoState extends State<LevelTwo> {
                       }
                       {
                         return Container(
-                          color: Colors.yellow,
+                          // color: Colors.yellow,
                           // height: size.height * 0.27,
                           child: Container(
                             height: size.height * 0.14,
@@ -290,7 +290,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                           widget.filter_id,
                                                           widget
                                                               .old_filter_where_ids,
-                                                          "to date");
+                                                          "from date");
                                                     },
                                                     icon: const Icon(
                                                         Icons.calendar_month)),
@@ -303,7 +303,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
-                                                              "to date");
+                                                              "from date");
                                                         }),
                                                         child: Text(Provider.of<
                                                                     Controller>(
@@ -340,7 +340,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                           widget.filter_id,
                                                           widget
                                                               .old_filter_where_ids,
-                                                          "from date");
+                                                          "to date");
                                                     },
                                                     icon: const Icon(
                                                         Icons.calendar_month)),
@@ -369,7 +369,7 @@ class _LevelTwoState extends State<LevelTwo> {
                                                               widget.filter_id,
                                                               widget
                                                                   .old_filter_where_ids,
-                                                              "from date");
+                                                              "to date");
                                                         },
                                                         child: Text(
                                                           selectD.toDate
@@ -381,14 +381,14 @@ class _LevelTwoState extends State<LevelTwo> {
                                           : Row(
                                               children: [],
                                             ),
-                                      qtyvisible
+                                    type3=="S" ?  qtyvisible
                                           ? SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
                                                 color: P_Settings.l2appbarColor,
-                                                icon: const Icon(
+                                                icon:  Icon(
                                                     Icons.arrow_upward,
-                                                    color: Colors.deepPurple),
+                                                    color: P_Settings.l2appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = false;
@@ -399,16 +399,16 @@ class _LevelTwoState extends State<LevelTwo> {
                                           : SizedBox(
                                               width: size.width * 0.2,
                                               child: IconButton(
-                                                icon: const Icon(
+                                                icon:  Icon(
                                                     Icons.arrow_downward,
-                                                    color: Colors.deepPurple),
+                                                    color:  P_Settings.l2appbarColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     qtyvisible = true;
                                                   });
                                                 },
                                               ),
-                                            )
+                                            ):Text(""),
                                     ],
                                   ),
                                 ),
@@ -546,12 +546,15 @@ class _LevelTwoState extends State<LevelTwo> {
               //   height: size.height * 0.005,
               // ),
               Container(
+                width: double.infinity,
+
                 color: P_Settings.dateviewColor,
                 height: size.height * 0.05,
-                child: Row(
-                  children: [
-                    Flexible(child: Text(titleName.toString())),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Text(titleName.toString())),
                 ),
               ),
               // Provider.of<Controller>(context, listen: false).isSearch &&

@@ -553,7 +553,7 @@ class Controller extends ChangeNotifier {
               print("modified-----${modSum}");
 
               // Print("modified-----${modSum}");
-              totMap[expndtableColumn[i]] = modSum;
+              totMap[expndtableColumn[i]] = d2;
             } else {
               // sum='';
               totMap[expndtableColumn[i]] = ' ';
