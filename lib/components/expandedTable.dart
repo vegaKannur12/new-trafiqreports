@@ -23,7 +23,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
   int colNo = 0;
   double width = 0.0;
   List<String>? rowName;
-
+  int precision=2;
   @override
   void initState() {
     print("level---$widget.level");
@@ -33,9 +33,9 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
       // mapTabledata=widget.dedoded;
       // print("json data----${jsondata}");
       mapTabledata = widget.dedoded;
-    print("mapTabledata---${mapTabledata}");
+      print("mapTabledata---${mapTabledata}");
 
-      colNo = mapTabledata[0].length ;
+      colNo = mapTabledata[0].length;
       print("colNumber---${colNo}");
     } else {
       print("null");
@@ -111,7 +111,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
       return DataColumn(
         tooltip: colsName,
         label: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: width, maxWidth: width *2),
+          constraints: BoxConstraints(minWidth: width, maxWidth: width * 2),
           // constraints: BoxConstraints(minWidth: width, maxWidth: width * 2),
           child: Padding(
             padding: behv[1] == "L"
@@ -135,8 +135,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
     List<DataRow> items = [];
     var itemList = mapTabledata;
     for (var r = 0; r < itemList.length; r++) {
-      items.add(
-        DataRow(
+      items.add(DataRow(
           color: r == itemList.length - 1
               ? MaterialStateProperty.all(P_Settings.l1totColor)
               : widget.level == "level1"
@@ -156,6 +155,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
   List<DataCell> getCelle(Map<String, dynamic> data) {
     String behv;
     String colsName;
+    String d = "";
+    double d2;
     print("data--$data");
     List<DataCell> datacell = [];
     for (var i = 0; i < tableColumn.length; i++) {
@@ -164,6 +165,11 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
           rowName = tableColumn[i].split('_');
           colsName = rowName![1];
           behv = rowName![0];
+          if (behv[0] == "C") {
+            d2 = double.parse(value);
+            d = d2.toStringAsFixed(precision);
+          }
+
           print("value---${value}");
           datacell.add(
             DataCell(
@@ -177,7 +183,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
                       ? EdgeInsets.only(left: 0.2)
                       : EdgeInsets.only(right: 0.2),
                   child: Text(
-                    value.toString(),
+                    behv[0] == "C" ?
+                       d.toString() : value.toString(),
                     style: TextStyle(fontSize: 11),
                   ),
                 ),

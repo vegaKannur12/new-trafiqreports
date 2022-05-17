@@ -100,16 +100,24 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
   List<DataColumn> getColumns(List<String> columns) {
     String behv;
     String colsName;
+    String d2="";
+    double d;
+
     return columns.map((String column) {
       // final isAge = column == columns[2];
       colName = column.split('_');
       colsName = colName![1];
       behv = colName![0];
-      // print("column---${column}");
+      print("behv[0]---${behv[0]}");
+      // if (behv[0] == "C") {
+      //   d= double.parse(colsName);
+      //   d2 = d.toStringAsFixed(2);
+      // }
+      // print("d2----$d2");
       return DataColumn(
         tooltip: colsName,
         label: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: width, maxWidth: width *2),
+          constraints: BoxConstraints(minWidth: width, maxWidth: width * 2),
           child: Padding(
             padding: EdgeInsets.all(0.0),
 
@@ -150,7 +158,8 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
           datacell.add(
             DataCell(
               Container(
-          constraints: BoxConstraints(minWidth: width, maxWidth: width *2),
+                constraints:
+                    BoxConstraints(minWidth: width, maxWidth: width * 2),
                 // width: 70,
                 alignment: behv[1] == "L"
                     ? Alignment.centerLeft
