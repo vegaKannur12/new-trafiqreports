@@ -40,9 +40,10 @@ class _HomePageState extends State<HomePage> {
   DateTime dateTime = DateTime.now(); //
   ////////////////////////////////////////////
   _onSelectItem(int index, String reportType1) {
-    _selectedIndex.value = index;
     setState(() {
+      _selectedIndex.value = index;
       reportType = reportType1;
+
     });
     Navigator.of(context).pop(); // close the drawer
   }

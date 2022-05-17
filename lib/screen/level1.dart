@@ -194,17 +194,13 @@ class _LevelOneState extends State<LevelOne> {
                         print("type..............$type");
                         List<String> parts = type!.split(',');
                         type1 = parts[0].trim();
-                        print("type 1.............$type1");
                         type2 = parts[1].trim();
-                        print("type 2.............$type2");
                         type3 = parts[2].trim();
-                        print("type 3.............$type3");
                         // prefix: "date"
                       }
                       {
                         return Container(
                           color: Colors.yellow,
-                          // height: size.height * 0.27,
                           child: Container(
                             height: size.height * 0.14,
                             color: P_Settings.dateviewColor,
