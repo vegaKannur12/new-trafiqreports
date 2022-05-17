@@ -102,6 +102,8 @@ class Controller extends ChangeNotifier {
     try {
       Uri url = Uri.parse("$urlgolabl/reports_list.php");
       var body = {"rg_id": rg_id};
+      isLoading = true;
+      // notifyListeners();
       http.Response response = await http.post(
         url,
         body: body,
@@ -114,9 +116,10 @@ class Controller extends ChangeNotifier {
         reportList.add(item);
         // notifyListeners();
       }
-
-      print("report date type ...........${reportList}");
-      print("report list${reportList}");
+      isLoading = false;
+      notifyListeners();
+      // print("report date type ...........${reportList}");
+      // print("report list${reportList}");
       final jsonData = reportList[0]['special_element2'];
 
       // final jsonData ='[[{"label":"QTY","value":"1"},{"label":"BATCH COST","value":"B.batch_cost"}],[{"label":"QTY","value":"1"},{"label":"BATCH COST","value":"B.batch_cost"}]]';
@@ -546,15 +549,15 @@ class Controller extends ChangeNotifier {
             if (expndtableColumn[i][2] == "Y") {
               // value.toStringAsFixed(2);
               print("value---- $value");
-              if(value==null){
+              if (value == null) {
                 print("null value");
-                value="0";
+                value = "0";
               }
               double valueStored = double.parse(value);
               sum = sum + valueStored;
-              String d2 = sum.toStringAsFixed(2); 
+              String d2 = sum.toStringAsFixed(2);
               print("double porecision----${d2}");
-              double modSum=double.parse(d2);
+              double modSum = double.parse(d2);
               print("modified-----${modSum}");
 
               // Print("modified-----${modSum}");
