@@ -100,20 +100,13 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
   List<DataColumn> getColumns(List<String> columns) {
     String behv;
     String colsName;
-    String d2="";
-    double d;
 
     return columns.map((String column) {
       // final isAge = column == columns[2];
       colName = column.split('_');
       colsName = colName![1];
       behv = colName![0];
-      print("behv[0]---${behv[0]}");
-      // if (behv[0] == "C") {
-      //   d= double.parse(colsName);
-      //   d2 = d.toStringAsFixed(2);
-      // }
-      // print("d2----$d2");
+
       return DataColumn(
         tooltip: colsName,
         label: ConstrainedBox(
@@ -146,6 +139,8 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
   List<DataCell> getCelle(Map<String, dynamic> data) {
     String behv;
     String colsName;
+    String d2 = "";
+    double d;
     print("data--$data");
     List<DataCell> datacell = [];
     for (var i = 0; i < tableColumn.length; i++) {
@@ -154,6 +149,18 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
           rowName = tableColumn[i].split('_');
           colsName = rowName![1];
           behv = rowName![0];
+          print("behv[0]---${behv[0]}");
+           if (value == null) {
+            print("entered");
+            value = "0";
+          }
+          if (behv[0] == "C") {
+            print("if");
+            print("colsName---$value");
+            d= double.parse(value);
+            d2 = d.toStringAsFixed(2);
+          }
+          print("d2----$d2");
           // print("column---${tableColumn[i]}");
           datacell.add(
             DataCell(
@@ -168,7 +175,8 @@ class _ShrinkedDatatableState extends State<ShrinkedDatatable> {
                   padding: EdgeInsets.all(0.0),
                   // padding: behv[1] == "L"? EdgeInsets.only(left:0.3):EdgeInsets.only(right:0.3),
                   child: Text(
-                    value.toString(),
+                    // value.toString(),
+                    behv[0] == "C"?d2.toString():value.toString(),
                     style: TextStyle(fontSize: 11),
                   ),
                 ),

@@ -23,7 +23,7 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
   int colNo = 0;
   double width = 0.0;
   List<String>? rowName;
-  int precision=2;
+  int precision = 2;
   @override
   void initState() {
     print("level---$widget.level");
@@ -165,9 +165,18 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
           rowName = tableColumn[i].split('_');
           colsName = rowName![1];
           behv = rowName![0];
+
+          print("val-----$value");
+          if (value == null) {
+            print("entered");
+            value = "0";
+          }
+
           if (behv[0] == "C") {
+            print("if");
+            print("colsName---$value");
             d2 = double.parse(value);
-            d = d2.toStringAsFixed(precision);
+            d = d2.toStringAsFixed(2);
           }
 
           print("value---${value}");
@@ -183,8 +192,8 @@ class _ExpandedDatatableState extends State<ExpandedDatatable> {
                       ? EdgeInsets.only(left: 0.2)
                       : EdgeInsets.only(right: 0.2),
                   child: Text(
-                    behv[0] == "C" ?
-                       d.toString() : value.toString(),
+                    // value.toString(),
+                    behv[0]=="C"? d.toString():value.toString(),
                     style: TextStyle(fontSize: 11),
                   ),
                 ),
