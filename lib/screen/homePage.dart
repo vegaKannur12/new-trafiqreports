@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex.value = index;
       reportType = reportType1;
+      print("reportType.......${reportType}");
     });
     Navigator.of(context).pop(); // close the drawer
   }
@@ -164,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                   .getCategoryReportList(
                       value.reportCategoryList[i].values.elementAt(0));
               _onSelectItem(i, value.reportCategoryList[i].values.elementAt(1));
-              //  Provider.of<Controller>(context, listen: false).reportCategoryList.clear();
+           
             });
       }));
     }
@@ -367,11 +368,6 @@ class _HomePageState extends State<HomePage> {
                 }),
           Consumer<Controller>(builder: (context, value, child) {
             {
-              // if (value.isLoading == true) {
-              //   return Center(
-              //     child: CircularProgressIndicator(),
-              //   );
-              // }
               return Container(
                 height: size.height * 0.7,
                 child: ListView.builder(
@@ -399,7 +395,7 @@ class _HomePageState extends State<HomePage> {
                               toDate = toDate == null
                                   ? crntToDateFormat.toString()
                                   : toDate.toString();
-                              print("from date---$fromDate");
+                              // print("from date---$fromDate");
                               Provider.of<Controller>(context, listen: false)
                                   .fromDate = fromDate;
                               Provider.of<Controller>(context, listen: false)
@@ -409,18 +405,18 @@ class _HomePageState extends State<HomePage> {
                               reportelements = value.reportList[index]
                                       ["report_elements"]
                                   .toString();
-                              print("specialelement...........$specialelement");
-                              print("filter ..............$filter");
+                              // print("specialelement...........$specialelement");
+                              // print("filter ..............$filter");
                               List<String> parts = filter!.split(',');
-                              print("parts-----$parts");
+                              // print("parts-----$parts");
                               filter1 = parts[0].trim();
-                              print(
-                                  "home page filtersss ..............$filter1");
+                              // print(
+                              //     "home page filtersss ..............$filter1");
                               String old_filter_where_ids = "0,";
 
                               String special_field2 =
                                   value.specialelements[0]["value"];
-                              print(special_field2);
+                              // print(special_field2);
                               Provider.of<Controller>(context, listen: false)
                                   .getSubCategoryReportList(
                                       special_field2,

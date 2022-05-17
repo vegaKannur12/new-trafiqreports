@@ -87,7 +87,7 @@ class Controller extends ChangeNotifier {
         reportCategoryList.add(item);
       }
 
-      print("report Category ${reportCategoryList}");
+      // print("report Category ${reportCategoryList}");
       notifyListeners();
     } catch (e) {
       print(e);
@@ -115,8 +115,8 @@ class Controller extends ChangeNotifier {
         // notifyListeners();
       }
 
-      print("report date type ...........${reportList}");
-      print("report list${reportList}");
+      // print("report date type ...........${reportList}");
+      // print("report list${reportList}");
       final jsonData = reportList[0]['special_element2'];
 
       // final jsonData ='[[{"label":"QTY","value":"1"},{"label":"BATCH COST","value":"B.batch_cost"}],[{"label":"QTY","value":"1"},{"label":"BATCH COST","value":"B.batch_cost"}]]';
@@ -127,10 +127,10 @@ class Controller extends ChangeNotifier {
       for (var i in parsedJson) {
         specialelements.add(i);
       }
-      print("report list---${reportList}");
+      // print("report list---${reportList}");
       // print("reportList[4]['report_elements']---${reportList[3]}");
 
-      print("specialelements.............${specialelements}");
+      // print("specialelements.............${specialelements}");
       //  print("special_element2.........................${reportList[0]['special_element2']}");
       // resultCopy=reportList;
       notifyListeners();
@@ -149,8 +149,8 @@ class Controller extends ChangeNotifier {
       String old_filter_where_ids,
       String level) async {
     // resultCopy.clear();
-    print(
-        "special_field2---${special_field}  filter_id---${filter_id} fromdate---${fromdate} tilldate---${tilldate} old_filter_where_ids----${old_filter_where_ids}");
+    // print(
+    //     "special_field2---${special_field}  filter_id---${filter_id} fromdate---${fromdate} tilldate---${tilldate} old_filter_where_ids----${old_filter_where_ids}");
     try {
       Uri url = Uri.parse("$urlgolabl/filters_list.php");
       var body = {
@@ -177,7 +177,7 @@ class Controller extends ChangeNotifier {
           level1reportList.add(item);
         }
         l1length = level1reportList.length;
-        print("l1 report list -----${level1reportList}");
+        // print("l1 report list -----${level1reportList}");
         // print("l1length---${l1length}");
         l1isExpanded = List.generate(l1length, (index) => false);
         l1visible = List.generate(l1length, (index) => true);
@@ -188,7 +188,7 @@ class Controller extends ChangeNotifier {
       }
       if (level == "level2") {
         var map2 = jsonDecode(response.body);
-        print("dfbjdjzfn${level1reportList.length}");
+        // print("dfbjdjzfn${level1reportList.length}");
         level2reportList.clear();
         for (var item in map2) {
           level2reportList.add(item);
