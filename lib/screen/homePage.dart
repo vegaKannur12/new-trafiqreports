@@ -165,7 +165,6 @@ class _HomePageState extends State<HomePage> {
                   .getCategoryReportList(
                       value.reportCategoryList[i].values.elementAt(0));
               _onSelectItem(i, value.reportCategoryList[i].values.elementAt(1));
-           
             });
       }));
     }
