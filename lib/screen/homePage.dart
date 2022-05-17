@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController _controller = TextEditingController();
   Widget? appBarTitle;
   Icon actionIcon = Icon(Icons.search);
-  late ValueNotifier<int> _selectedIndex = ValueNotifier(0);
+  int _selectedIndex = 0;
   DateTime currentFromDate = DateTime.now();
   DateTime currentToDate = DateTime.now();
   String? reportType;
@@ -41,7 +41,8 @@ class _HomePageState extends State<HomePage> {
   ////////////////////////////////////////////
   _onSelectItem(int index, String reportType1) {
     setState(() {
-      _selectedIndex.value = index;
+      _selectedIndex = index;
+      print("index----$_selectedIndex");
       reportType = reportType1;
       print("reportType.......${reportType}");
     });
@@ -159,7 +160,7 @@ class _HomePageState extends State<HomePage> {
               value.reportCategoryList[i].values.elementAt(1),
               style: TextStyle(fontFamily: P_Font.kronaOne, fontSize: 17),
             ),
-            selected: i == _selectedIndex.value,
+            selected: i == _selectedIndex,
             onTap: () {
               Provider.of<Controller>(context, listen: false)
                   .getCategoryReportList(
@@ -367,9 +368,21 @@ class _HomePageState extends State<HomePage> {
                 }),
           Consumer<Controller>(builder: (context, value, child) {
             {
+              if (value.isLoading == true) {
+                return Container(
+                  alignment: Alignment.center,
+                  // height:300,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                    ],
+                  ));
+              }
               return Container(
                 height: size.height * 0.7,
-                child: ListView.builder(
+                child:ListView.builder(
                   shrinkWrap: true,
                   itemCount: value.reportList.length,
                   itemBuilder: ((context, index) {
