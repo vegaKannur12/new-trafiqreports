@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _selectedIndex.value = index;
       reportType = reportType1;
-
     });
     Navigator.of(context).pop(); // close the drawer
   }
@@ -117,7 +116,6 @@ class _HomePageState extends State<HomePage> {
         currentFromDate.year, currentFromDate.month - 1, currentFromDate.day);
     crntFromDateFormat = DateFormat('dd-MM-yyyy').format(currentD);
     crntToDateFormat = DateFormat('dd-MM-yyyy').format(currentToDate);
-
     super.initState();
     Provider.of<Controller>(context, listen: false).getCategoryReportList("1");
     reportType = Provider.of<Controller>(context, listen: false)
