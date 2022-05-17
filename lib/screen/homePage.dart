@@ -161,14 +161,11 @@ class _HomePageState extends State<HomePage> {
             ),
             selected: i == _selectedIndex.value,
             onTap: () {
-              _onSelectItem(i, value.reportCategoryList[i].values.elementAt(1));
               Provider.of<Controller>(context, listen: false)
                   .getCategoryReportList(
                       value.reportCategoryList[i].values.elementAt(0));
-              // Navigator.push(
-              //                 context,
-              //                 MaterialPageRoute(builder: (context) => Level1Sample()),
-              //               );
+              _onSelectItem(i, value.reportCategoryList[i].values.elementAt(1));
+              //  Provider.of<Controller>(context, listen: false).reportCategoryList.clear();
             });
       }));
     }
@@ -410,9 +407,10 @@ class _HomePageState extends State<HomePage> {
                                   .todate = toDate;
                               filter =
                                   value.reportList[index]["filters"].toString();
-                              reportelements =
-                                  value.reportList[index]["report_elements"].toString();
-                                  print("specialelement...........$specialelement");
+                              reportelements = value.reportList[index]
+                                      ["report_elements"]
+                                  .toString();
+                              print("specialelement...........$specialelement");
                               print("filter ..............$filter");
                               List<String> parts = filter!.split(',');
                               print("parts-----$parts");
